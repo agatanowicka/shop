@@ -1,0 +1,75 @@
+.productImage{
+
+height: 600px;
+margin-right: 5%;
+}
+.price{
+    color: rgb(231, 0, 0);
+}
+.shoppingCartButton{
+    width: 100%;
+    margin-bottom: 5%;
+}
+.dropdown-toggle.btn.btn-outline-dark{
+    width: 100%;
+    margin-top: 5%;
+text-align: left;    
+margin-bottom: 5%;
+}
+.buttonHeading{
+    float: left;
+}
+.basicInfo{
+    margin: auto;
+}
+.fotoDiv{
+    background-image: url(https://www.fabloktex.com/wp-content/uploads/2018/06/fablok_fabric.jpg);
+    height: 600px;
+    text-align: center;
+    
+}
+.fotoHeading{
+  padding-top: 40%;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  font-size: 5rem;
+  text-shadow: rgb(70, 68, 68) 3px 3px;
+}
+.detailsContainer{
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+.header{
+    background-color: #E7B2A5;
+    height: 80px;
+}
+.linkItem{
+    color:white;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    
+}
+.linkItem:hover{
+    color:rgb(51, 50, 50);
+}
+.imageAndBasicInfo{
+    margin-top:3%;
+}
+.footer{
+    background-color: rgb(51, 50, 50);
+    height: 250px;
+    text-align: center;
+    color: white;
+}
+
+.footerIcons{
+    text-align: center;
+}
+.footerIcon{
+    margin:100px 20px 30px;
+    color: white;
+
+}
+.footerIcon:hover{
+    color: #E7B2A5;
+}
