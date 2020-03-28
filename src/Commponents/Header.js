@@ -10,13 +10,13 @@ function Header() {
                className="header"
             >
                 <Nav.Item>
-                    <Nav.Link className="linkItem" href="/home">Home</Nav.Link>
+                    <Nav.Link className="linkItem" href="/">Home</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="linkItem" eventKey="link-1">Colection</Nav.Link>
+                    <Nav.Link className="linkItem" href="/Catalog">Colection</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link  className="linkItem" eventKey="link-2">LogIn</Nav.Link>
+                    <Nav.Link  className="linkItem" eventKey="">LogIn</Nav.Link>
                 </Nav.Item>
                 
             </Nav>

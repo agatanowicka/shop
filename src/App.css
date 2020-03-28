@@ -80,3 +80,86 @@ margin-bottom: 5%;
     margin-top: 5%;
     margin-bottom:5%;
 }
+.topContainerBackground{
+        background: url(https://polki.pl/foto/4_3_LARGE/trendy-wiosna-lato-2020-10-hitow-sezonu-2449281.jpg) no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        height:500px;
+        position: relative;
+        z-index: 0;
+        background-position:top;
+}
+.topContainerBackground::before{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.24);
+        z-index: -1;
+        left: 0;
+        top: 0;
+}
+.topContainerHeading{
+    color: white;
+    font-size: 8rem;
+    text-align: center;
+    text-shadow: #E7B2A5 3px 3px;
+    padding-top: 300px;
+}
+.allMenuCards{
+    margin:1%;   
+}
+.cardHomeTitle{
+    color: rgb(247, 241, 240);
+    text-shadow: rgb(51, 50, 50) 4px 3px;
+    font-size: x-large;
+    text-align: center;
+    margin-top: 30% ;
+}
+.dresses{
+    background-image: url(https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ-E5B6j2nFTtwpte2aZ20_J4-dG_H8Xj6V7cb4m7s521Eukc-iWHD9SU1Xt75moulefn0oShMvlqRelNyqusih2S7QHbsR0_-Cm46QbsI&usqp=CAE);
+height: 350px;
+background-size: cover;
+}
+.jeans{
+    background-image: url(https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRQgx3LA1rOTvwk8T0qIQKg-qQE6olnLwwBx2kP8sQnZ6ecpyUIXbNq6xudPBDCTd_XetA7fIiLPTtqqmMFaH6gvhaMEwTJFkCciebKpOk&usqp=CAE);
+    height: 250px;
+    background-size: cover;
+}
+.coats{
+    background-image: url(https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSBXZ-n42Zxz8ULb_cFUvgoolcaGkLvVptBplNeb3GYxj_bwp89zluxBbUomBcP1gjg4azkt_IsX0_Moxra1EWw1We2mRyHXUmc3XWwnIg&usqp=CAE);
+    height: 300px;
+    background-size: cover;
+}
+.tshirt{
+    background-image: url(https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRejEH7-8jvBf9VgNKRCkw0A5RTtNbQxzKDpkFLdriI69Q79H0yGdSMgjffU7ak7bcpvitAhfIJGfhsum7yHRtWeqS7KHF6sGfIhTSl8h4i&usqp=CAE);
+    height: 300px;
+    background-size: cover;
+}
+.shoes{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSnrVUMfAp5hpnXeLzCfVidgt5ybVcNtfA-Anpu-3uUhPhDYO9F);
+    height: 280px;
+    background-size: cover;
+}
+.blouses{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtMf72v_NWqs85_Yq-T5_rRPfGbAaxrKcxLft5NEqKNb-HQ3D8);
+    height: 280px;
+    background-size: cover;
+}
+.bags{
+    background-image: url(https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcR_VZmkNCkvM1qSGO1C_r1iBioMv8vEUcAG2oXLXg8PDswQnehj2AC0TKNiKiH6u-X1Rf2ArTNxpA5yFcFd97qIVwsN9lGbwcLAGPRHrfk&usqp=CAE);
+    height: 270px;
+    background-size: cover;
+}
+.jawellery{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ08V0vvLH6uWga4xWEgAErbyfNA88W0qY5ZeIA8xosSj2uVfQS);
+    height: 230px;
+    background-size: cover;
+    width: 200%;
+}
+.skirts{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQlipCj1YVQTxVJyvJb4-TopE1OrFSARuWLbB04ItnsW5q6c6TD);
+    height: 230px;
+    background-size: cover;
+    width: 200%;
+}
