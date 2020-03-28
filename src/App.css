@@ -73,3 +73,10 @@ margin-bottom: 5%;
 .footerIcon:hover{
     color: #E7B2A5;
 }
+.cardTitle{
+    height: 50px;
+}
+.allCard{
+    margin-top: 5%;
+    margin-bottom:5%;
+}

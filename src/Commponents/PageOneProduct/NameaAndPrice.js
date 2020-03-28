@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import clothes from "../clothes";
+import clothes from "../../clothes";
 
 function NameAndPrice (props){
         return (

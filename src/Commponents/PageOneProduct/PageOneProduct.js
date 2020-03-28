@@ -1,15 +1,15 @@
 import React from "react";
-import clothes from "../clothes";
+import clothes from "../../clothes";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Image from "./Image";
-import NameAndPrice from "./NameaAndPrice";
-import ChooseSizeButton from "./ChooseSizeButton";
-import AddToCardButton from "./AddToCardButton";
-import Details from "./Details";
- import Foto from "./Foto";
-import Parcel from "./Parcel";
+import Image from "../PageOneProduct/Image";
+import NameAndPrice from "../PageOneProduct/NameaAndPrice";
+import ChooseSizeButton from "../PageOneProduct/ChooseSizeButton";
+import AddToCardButton from "../PageOneProduct/AddToCardButton";
+import Details from "../PageOneProduct/Details";
+ import Foto from "../PageOneProduct/Foto";
+import Parcel from "../PageOneProduct/Parcel";
 
 function PageOneProduct() {
     return (
