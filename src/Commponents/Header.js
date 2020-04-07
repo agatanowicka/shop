@@ -1,8 +1,9 @@
-import React from 'react';
+import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav'
 
-function Header() {
+function Header (){
+    
     return (
         
             <Nav
@@ -13,10 +14,10 @@ function Header() {
                     <Nav.Link className="linkItem" href="/">Home</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="linkItem" href="/Catalog">Colection</Nav.Link>
+                    <Nav.Link className="linkItem" href="/Catalog" > Colection</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link  className="linkItem" eventKey="">LogIn</Nav.Link>
+                    <Nav.Link  className="linkItem"  href="/Login">LogIn</Nav.Link>
                 </Nav.Item>
                 
             </Nav>

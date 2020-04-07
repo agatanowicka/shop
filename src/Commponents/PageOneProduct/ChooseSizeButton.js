@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 
-class ChooseSizeButton extends Component {
-    render() {
-        return (
-            <div >
+function ChooseSizeButton(props) {
+    return (
+        <div >
             <DropdownButton
-             
                 id={`dropdown-variants-Secondary`}
                 title="Choose size"
                 variant="outline-dark"
             >
-                <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                <Dropdown.Item eventKey="3" active> Active Item</Dropdown.Item>
+                {props.sizes.map(size => {
+                    return(
+                     <Dropdown.Item eventKey={"size"}>{size}</Dropdown.Item>)
+                })};
             </DropdownButton>
-            </div>
-        )
-    }
+        </div>
+    )
+
 }
 export default ChooseSizeButton

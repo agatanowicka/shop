@@ -112,7 +112,7 @@ margin-bottom: 5%;
 .cardHomeTitle{
     color: rgb(247, 241, 240);
     text-shadow: rgb(51, 50, 50) 4px 3px;
-    font-size: x-large;
+    font-size: 10rem;
     text-align: center;
     margin-top: 30% ;
 }
@@ -162,4 +162,42 @@ background-size: cover;
     height: 230px;
     background-size: cover;
     width: 200%;
+}
+.saleContainer{
+    border-color:#E7B2A5 ;
+    border-width: 15px;
+    border-style: solid;
+    height: 250px;
+    text-align: center;
+    background-color:rgb(240, 130, 198) ;
+}
+.saleHeading{
+    color: rgb(255, 255, 255);
+    text-shadow: #E7B2A5 2px  2px;
+    font-weight: bolder;
+    font-size: 5rem;
+}
+.loginForm{
+    margin: 5% auto 2% auto;
+}
+.loginButton{
+    width: 100%;
+}
+.createAnAccountButton{
+   width: 100%;
+}
+.loginPage{
+    margin: 5% auto 5% auto;
+    width: 60%;
+}
+.signupPage{
+    margin: 5% auto 5% auto;
+    width: 60%;
+}
+.signupButton{
+    width: 100%;
+}
+.validMessage{
+    color: red;
+    font-size: small;
 }

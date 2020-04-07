@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-bootstrap/Carousel'
-import clothes from "../../clothes";
 
-class Image extends Component {
-    render() {
-        let { images } = clothes[0];
+function  Image(props){
+
+    debugger;
         return (
             <Carousel >
-                {images.map(item => {
+               { props.images.map(item => {
                     return (
                         <Carousel.Item key={item}>
                             <img
@@ -21,7 +20,6 @@ class Image extends Component {
                 })}
             </Carousel>
         );
-    }
 
 }
 export default Image

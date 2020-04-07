@@ -12,6 +12,7 @@ function Cards(props) {
                 <Card.Text>
                     {props.price}
                 </Card.Text>
+                <Card.Link href={"/product/" + props.productId}>Card Link</Card.Link>
             </Card.Body>
         </Card>
     )
