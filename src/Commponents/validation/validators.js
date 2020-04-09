@@ -26,4 +26,3 @@ export const lt = (value, minLength) => {
   }
   return "";
 };
- 

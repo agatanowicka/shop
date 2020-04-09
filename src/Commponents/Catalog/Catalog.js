@@ -15,8 +15,13 @@ class Catalog extends Component {
     }
     getAllProducts() {
         debugger;
-
-        fetch('http://localhost:8080/colection/product', { method: 'GET' })
+        const type = this.props.match.params.type;
+        
+let path='';
+if(type) {
+    path = `type=${type}`;
+}
+        fetch(`http://localhost:8080/colection/product?${path}`, { method: 'GET' })
             .then(res => {
                 debugger;
                 if (res.status !== 200) {
@@ -42,9 +47,9 @@ class Catalog extends Component {
                         {this.state.clothes.map(item => {
                             return (
                                 <Col xs={12} md={4}>
-                                    
-                                        <Card name={item.name} image={item.images} price={item.price} productId={item._id} />
-                                    
+
+                                    <Card name={item.name} image={item.images} price={item.price} productId={item._id} />
+
                                 </Col>
                             )
                         })}

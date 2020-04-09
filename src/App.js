@@ -8,10 +8,12 @@ import {
 import Header from "./Commponents/Header";
 import Footer from "./Commponents/Footer";
 import PageOneProduct from "./Commponents/PageOneProduct/PageOneProduct";
-import Catalog from "./Commponents/Catalog/Catalog"
-import HomePage from "./Commponents/Home/HomePage"
-import LoginPage from "./Commponents/Login/LoginPage"
-import SignupPage from "./Commponents/Signup/SignupPage"
+import Catalog from "./Commponents/Catalog/Catalog";
+import HomePage from "./Commponents/Home/HomePage";
+import LoginPage from "./Commponents/Login/LoginPage";
+import SignupPage from "./Commponents/Signup/SignupPage";
+import CardMenuForm from "./Commponents/AdministratorPages/CardMenuForm";
+import AddNewProductForm from './Commponents/AdministratorPages/AddNewProductForm';
 class App extends Component {
   render() {
         return (
@@ -20,9 +22,12 @@ class App extends Component {
             <Header />
             <Route exact path="/"  component={HomePage}/>
             <Route exact path="/Catalog" component={Catalog} />
+            <Route exact path="/Catalog/:type" component={Catalog} />
           <Route path={"/Product/:id"} component={PageOneProduct} />
           <Route path="/Login" component={LoginPage} />
           <Route path ="/Signup" component={SignupPage} />
+          <Route path ="/CardMenuForm" component={CardMenuForm} />
+          <Route path ="/AddNewProductForm" component={AddNewProductForm} />
             <Footer />
           </div>
           </Router>
