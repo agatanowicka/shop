@@ -15,7 +15,7 @@ class Catalog extends Component {
     }
     getAllProducts() {
         debugger;
-        const type = this.props.match.params.type;
+        let type = this.props.match.params.type;
         
 let path='';
 if(type) {

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { required, lt, email } from '../validation/validators';
+import { required, lt, email } from '../../validation/validators';
 import { Redirect } from 'react-router-dom';
+import Authorization from '../Authorization'
 
 class LoginForm extends Component {
 
@@ -23,75 +24,9 @@ class LoginForm extends Component {
                     validators: [required, (v => lt(v, 8))],
                     validationMessage: "",
                 }
-            },
-            authLoading: false,
-            isAuth: false,
-            token: '',
-            userId: '',
-            redirect:false
+            }
         }
     }
-
-    loginHandler = (event) => {
-        debugger;
-        event.preventDefault();
-        this.setState({ authLoading: true });
-        fetch('http://localhost:8080/user/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: this.state.loginForm.email.value,
-                password: this.state.loginForm.password.value
-            })
-        })
-            .then(res => {
-                if (res.status === 422) {
-                    console.log("Validation failed. Make sure the email address isn't used yet!");
-                }
-                if (res.status !== 200 && res.status !== 201) {
-                    console.log('Could not authenticate you!');
-                }
-                return res.json();
-            })
-            .then(resData => {
-                console.log(resData);
-                this.setState({
-                    isAuth: true,
-                    token: resData.token,
-                    authLoading: false,
-                    userId: resData.userId,
-                    redirect: true
-                });
-                localStorage.setItem('token', resData.token);
-                localStorage.setItem('userId', resData.userId);
-                const remainingMilliseconds = 60 * 60 * 1000;
-                const expiryDate = new Date(
-                    new Date().getTime() + remainingMilliseconds
-                );
-                localStorage.setItem('expiryDate', expiryDate.toISOString());
-                this.setAutoLogout(remainingMilliseconds);
-            })
-            .catch(err => {
-                console.log(err);
-                this.setState({
-                    isAuth: false,
-                    authLoading: false
-                });
-            });
-    };
-    setAutoLogout = milliseconds => {
-        setTimeout(() => {
-            this.logoutHandler();
-        }, milliseconds);
-    };
-    logoutHandler = () => {
-        this.setState({ isAuth: false, token: null });
-        localStorage.removeItem('token');
-        localStorage.removeItem('expiryDate');
-        localStorage.removeItem('userId');
-    };
     changeHandler = (input, value) => {
         debugger;
         this.setState(prevState => {
@@ -140,12 +75,17 @@ class LoginForm extends Component {
 
     render() {
         debugger
-        if (this.state.redirect && this.state.formIsValid) {
+        if (this.props.redirect && this.state.formIsValid) {
             return <Redirect to="/" />
         }
         return (
-            <div>
-                <Form onSubmit={this.loginHandler} className="loginForm">
+            <Authorization>
+                <Form onSubmit={e =>
+                    this.props.onLogin(e, {
+                        email: this.state.loginForm.email.value,
+                        password: this.state.loginForm.password.value
+                    })
+                } className="loginForm">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control
@@ -166,9 +106,9 @@ class LoginForm extends Component {
                             isValid={this.state.loginForm['password'].valid} />
                         <Form.Label className="validMessage">{this.state.loginForm.password.validationMessage}</Form.Label>
                     </Form.Group>
-                    <Button onClick={this.checkAllForm} className="loginButton" variant="dark" type="submit">Log In</Button>
+                    <Button onClick={this.checkAllForm} className="loginButton" variant="dark" type="submit"  loading={this.props.loading}>Log In</Button>
                 </Form>
-            </div>
+                </Authorization>
         )
     }
 

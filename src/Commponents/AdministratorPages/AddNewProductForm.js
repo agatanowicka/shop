@@ -6,7 +6,8 @@ import { required } from '../validation/validators';
 import { Redirect } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container'; import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container'; 
+import Image from 'react-bootstrap/Image';
 import Table from 'react-bootstrap/Table';
 
 class CardMenuForm extends Component {
@@ -85,7 +86,10 @@ class CardMenuForm extends Component {
         debugger;
         fetch('http://localhost:8080/colection/product', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                 'Content-Type': 'application/json',
+                  Authorization: 'Bearer ' + this.props.token 
+                },
             body: JSON.stringify({
                 images: this.state.images,
                 type: this.state.type,
@@ -212,6 +216,11 @@ class CardMenuForm extends Component {
             size: event.target.value
         })
     }
+    typeChangeHandler = (event) => {
+        this.setState({
+            type: event.target.value
+        })
+    }
     addSizeAndQuantity = () => {
         let errMessage;
         if (this.state.size !== '' && this.state.quantity !== "") {
@@ -261,13 +270,14 @@ class CardMenuForm extends Component {
                         <Form.Label>Image</Form.Label>
                         <Container style={{ width: '100%' }}>
                             <Row >
-                                <Col sm={8} style={{ padding: '0px' }}>   <Form.Control
-                                    type="text"
-                                    placeholder="Image"
-                                    onChange={this.imageChangeHandler}
-                                    value={this.state.image}
-                                    style={{ width: '100%' }}
-                                />
+                                <Col sm={8} style={{ padding: '0px' }}>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Image"
+                                        onChange={this.imageChangeHandler}
+                                        value={this.state.image}
+                                        style={{ width: '100%' }}
+                                    />
                                 </Col>
                                 <Col sm={4} style={{ paddingRight: '0px' }} >
                                     <Button onClick={this.addImage} style={{ width: '100%', backgroundColor: '#E7B2A5', borderColor: 'rgb(240, 130, 198)', borderWidth: '2px' }} variant="primary" >Add image</Button>
@@ -277,7 +287,10 @@ class CardMenuForm extends Component {
                     </Form.Group>
                     <Form.Group controlId="exampleForm.SelectCustom">
                         <Form.Label>Type</Form.Label>
-                        <Form.Control as="select" custom>
+                        <Form.Control as="select" custom
+                            onClick={this.typeChangeHandler}>
+                            onChange={this.typeChangeHandler}
+                            >
                             {this.state.types.map(option => {
                                 debugger
                                 return (
@@ -312,7 +325,7 @@ class CardMenuForm extends Component {
                     <Form.Group>
                         <Form.Label>Price</Form.Label>
                         <Form.Control
-                            type="text"
+                            type="number"
                             placeholder="Price"
                             onChange={(e) => this.changeHandler('price', e.target.value)}
                             value={this.state.newProductForm['price'].value}
@@ -381,6 +394,7 @@ class CardMenuForm extends Component {
                                 <Form.Group controlId="exampleForm.SelectCustom">
                                     <Form.Label>Size</Form.Label>
                                     <Form.Control as="select" custom
+                                        onClick={this.sizeChangeHandler}
                                         onChange={this.sizeChangeHandler}
                                         value={this.state.size}>
                                         <option>xs</option>

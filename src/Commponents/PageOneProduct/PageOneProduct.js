@@ -5,13 +5,12 @@ import Col from 'react-bootstrap/Col'
 import Image from "../PageOneProduct/Image";
 import NameAndPrice from "../PageOneProduct/NameaAndPrice";
 import ChooseSizeButton from "../PageOneProduct/ChooseSizeButton";
-import AddToCardButton from "../PageOneProduct/AddToCardButton";
 import Details from "../PageOneProduct/Details";
 import Foto from "../PageOneProduct/Foto";
 import Parcel from "../PageOneProduct/Parcel";
 
 class PageOneProduct extends Component {
-    
+
     constructor(props) {
         super(props);
         this.getDataAboutProduct();
@@ -20,12 +19,19 @@ class PageOneProduct extends Component {
             name: "",
             price: "",
             details: "",
-            sizes: []
+            fabric: '',
+            typeOfMaterial: '',
+            careTips: '',
+            sizes: [],
+            productId: ''
         };
     }
-        debugger;
+    debugger;
     getDataAboutProduct() {
         const productId = this.props.match.params.id;
+        this.setState({
+            productId
+        })
         debugger;
         fetch('http://localhost:8080/colection/product/' + productId, { method: 'GET' })
             .then(res => {
@@ -36,14 +42,17 @@ class PageOneProduct extends Component {
             })
             .then(resData => {
                 const sizes = resData.sizeAndQuantity
-                .filter(obj => obj.quanity > 0)
-                .map(obj => obj.size);
+                    // .filter(obj => obj.quanity > 0)
+                    .map(obj => obj.size)
                 debugger;
                 this.setState({
                     images: resData.images,
                     name: resData.name,
                     price: resData.price,
                     details: resData.details,
+                    fabric: resData.fabric,
+                    typeOfMaterial: resData.typeOfMaterial,
+                    careTips: resData.careTips,
                     sizes: sizes
                 })
             })
@@ -57,12 +66,21 @@ class PageOneProduct extends Component {
                 <Container className="imageAndBasicInfo">
                     <Row>
                         <Col lg>
-                            <Image images={this.state.images} />
+                            <Image
+                                images={this.state.images}
+                            />
                         </Col>
                         <Col lg className="basicInfo">
-                            <NameAndPrice name={this.state.name} price={this.state.price} />
-                            <ChooseSizeButton sizes={this.state.sizes}/>
-                            <AddToCardButton />
+                            <NameAndPrice
+                                name={this.state.name}
+                                price={this.state.price}
+                            />
+                            <ChooseSizeButton
+                                sizes={this.state.sizes}
+                                name={this.state.name}
+                                price={this.state.price}
+                                productId={this.state.productId}
+                            />
                             <Parcel />
                         </Col>
                     </Row>
@@ -70,7 +88,12 @@ class PageOneProduct extends Component {
                 <Container className="detailsContainer">
                     <Row>
                         <Col lg>
-                            <Details details={this.state.details} />
+                            <Details
+                                details={this.state.details}
+                                fabric={this.state.fabric}
+                                typeOfMaterial={this.state.typeOfMaterial}
+                                careTips={this.state.careTips}
+                            />
                         </Col>
                         <Col lg>
                             <Foto />

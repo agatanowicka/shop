@@ -2,10 +2,9 @@ import React, { Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { required, lt, email, password } from '../validation/validators';
+import { required, lt, email, password } from '../../validation/validators';
 import { Redirect } from 'react-router-dom';
-
-
+import Authorization from '../Authorization'
 
 class SignupForm extends Component {
 
@@ -84,7 +83,10 @@ class SignupForm extends Component {
             })
             .then(resData => {
                 console.log(resData);
-                this.setState({ isAuth: false, authLoading: false, redirect: true });
+                this.setState({
+                    isAuth: false, 
+                    authLoading: false, 
+                    redirect: true });
             })
             .catch(err => {
                 console.log(err);
@@ -146,7 +148,7 @@ class SignupForm extends Component {
             return <Redirect to="/Login" />
         }
         return (
-            <div>
+            <Authorization>
                 <Form onSubmit={this.createNewAccount} >
                     <Form.Group>
                         <Form.Label>First name</Form.Label>
@@ -219,7 +221,7 @@ class SignupForm extends Component {
                     </Form.Group>
                     <Button onClick={this.checkAllForm} className="signupButton" variant="dark" type="submit">Create an account</Button>
                 </Form>
-            </div>
+            </Authorization>
         )
     }
 

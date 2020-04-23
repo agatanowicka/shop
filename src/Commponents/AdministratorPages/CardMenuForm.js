@@ -42,7 +42,10 @@ class CardMenuForm extends Component {
         debugger;
         fetch('http://localhost:8080/cardMenu/', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + this.props.token
+            },
             body: JSON.stringify({
                 image: this.state.cardMenuForm.image.value,
                 title: this.state.cardMenuForm.title.value,
@@ -95,7 +98,7 @@ class CardMenuForm extends Component {
                 formIsValid = formIsValid && updatedForm[inputName].valid;
             }
             return {
-               cardMenuForm:updatedForm,
+                cardMenuForm: updatedForm,
                 formIsValid: formIsValid
             };
         });
