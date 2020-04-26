@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from "../PageOneProduct/Image";
 import NameAndPrice from "../PageOneProduct/NameaAndPrice";
-import ChooseSizeButton from "../PageOneProduct/ChooseSizeButton";
+import ChooseSizeAndAddToBusket from "../PageOneProduct/ChooseSizeAndAddToBusket";
 import Details from "../PageOneProduct/Details";
 import Foto from "../PageOneProduct/Foto";
 import Parcel from "../PageOneProduct/Parcel";
@@ -75,7 +75,7 @@ class PageOneProduct extends Component {
                                 name={this.state.name}
                                 price={this.state.price}
                             />
-                            <ChooseSizeButton
+                            <ChooseSizeAndAddToBusket
                                 sizes={this.state.sizes}
                                 name={this.state.name}
                                 price={this.state.price}
