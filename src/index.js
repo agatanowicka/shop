@@ -3,12 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from './reducers'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' 
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+ 
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+const store = createStore(persistedReducer);
+const persistor = persistStore(store);
 
 ReactDOM.render(
+  
     <BrowserRouter>
+    <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       <App />
+      </PersistGate>
+      </Provider>
     </BrowserRouter>,
+    
   document.getElementById('root')
 );
 

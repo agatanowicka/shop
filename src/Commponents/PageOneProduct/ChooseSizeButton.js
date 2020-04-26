@@ -1,53 +1,49 @@
-import React, { Component } from 'react';
+import React, { Component,   useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import { FaShoppingCart } from "react-icons/fa";
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+import { updateProductsInBasket } from '../../actions/productsInBasketActions';
+import { connect } from 'react-redux';
 
-class ChooseSizeButton extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            size: '',
-            product: {}
-        };
-    }
-    createNewOrder = (event) => {
+const ChooseSizeButton = ({dispatch}) => {
+    const createNewOrder = (event) => {
+        event.preventDefault();
         debugger
-        this.setState({
-            product: {
-                name: this.props.name,
-                price: this.props.price,
-                size: this.state.size,
-                productId: this.props.productId
+        dispatch(updateProductsInBasket(
+            {
+                name: "props.name",
+                price: "props.price",
+                size: "1",
+                productId: "props.productId"
             }
-        })
+        ))
+        // this.setState({
+        //     product: {
+        //         name: this.props.name,
+        //         price: this.props.price,
+        //         size: this.state.size,
+        //         productId: this.props.productId
+        //     }
+        // })
+        // this.updateProductsInBasket()
     }
-    sizeChangeHandler = (event) => {
-        this.setState({
-            size: event.target.value
-        })
-    }
-    render() {
         return (
             <div >
-                <Form onSubmit={this.createNewOrder}>
+                <Form onSubmit={createNewOrder}>
                     <Form.Group controlId="exampleForm.SelectCustom">
-                        <Form.Control as="select" custom
-                            onClick={this.sizeChangeHandler}>
-                            onChange={this.sizeChangeHandler}
+                        <Form.Control as="select" custom>
+                            
                     >
-                        {this.props.sizes.map(size => {
-                                return (
-                                    <option>{size}</option>)
-                            })};
+                        
                     </Form.Control>
                     </Form.Group>
                     <Button variant="dark" className="shoppingCartButton" type='submit'><h5 className="buttonHeading" >Add to card <FaShoppingCart />  </h5> </Button>
                 </Form>
             </div>
         )
-    }
 
 }
-export default ChooseSizeButton
+
+
+export default connect()(ChooseSizeButton);

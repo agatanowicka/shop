@@ -1,38 +1,23 @@
-import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
+import { connect } from 'react-redux';
+import { ProductCard } from '../SchoppingBasket/ProductCard';
 
-class SchoppingBasketPage extends Component {
+const SchoppingBasketPage = ({ productsInBasket }) => {
 
-    constructor(props) {
-        super(props);
-        this.pushProduct()
-        this.state = {
-            products: [],
-        };
-    }
-    pushProduct(){
-        debugger
-        const allOrderedProducts=[];
-        allOrderedProducts.push(this.props.product);
-        this.setState({
-            products:allOrderedProducts
-        })
-    }
-    render() {
-        return (
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-            </Card>
-        )
-    }
+  const renderProducts = () => {
+    return productsInBasket.map(product => <ProductCard key={product.id} product={product} />)
+  }
+  return (
+    <section>
+      {renderProducts()}
+    </section>
+  )
 }
-export default SchoppingBasketPage
+
+const mapStateToProps = state => { 
+  debugger;
+  return {
+  productsInBasket: state.productsInBasket.productsInBasket,
+}
+}
+export default connect(mapStateToProps)(SchoppingBasketPage)
