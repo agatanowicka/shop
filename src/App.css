@@ -116,53 +116,6 @@ margin-bottom: 5%;
     text-align: center;
     margin-top: 30% ;
 }
-/* .dresses{
-    background-image: url(https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ-E5B6j2nFTtwpte2aZ20_J4-dG_H8Xj6V7cb4m7s521Eukc-iWHD9SU1Xt75moulefn0oShMvlqRelNyqusih2S7QHbsR0_-Cm46QbsI&usqp=CAE);
-height: 350px;
-background-size: cover;
-} */
-/* .jeans{
-    background-image: url(https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRQgx3LA1rOTvwk8T0qIQKg-qQE6olnLwwBx2kP8sQnZ6ecpyUIXbNq6xudPBDCTd_XetA7fIiLPTtqqmMFaH6gvhaMEwTJFkCciebKpOk&usqp=CAE);
-    height: 250px;
-    background-size: cover;
-} */
-/* .coats{
-    background-image: url(https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSBXZ-n42Zxz8ULb_cFUvgoolcaGkLvVptBplNeb3GYxj_bwp89zluxBbUomBcP1gjg4azkt_IsX0_Moxra1EWw1We2mRyHXUmc3XWwnIg&usqp=CAE);
-    height: 300px;
-    background-size: cover;
-} */
-/* .tshirt{
-    background-image: url(https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRejEH7-8jvBf9VgNKRCkw0A5RTtNbQxzKDpkFLdriI69Q79H0yGdSMgjffU7ak7bcpvitAhfIJGfhsum7yHRtWeqS7KHF6sGfIhTSl8h4i&usqp=CAE);
-    height: 300px;
-    background-size: cover;
-} */
-/* .shoes{
-    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSnrVUMfAp5hpnXeLzCfVidgt5ybVcNtfA-Anpu-3uUhPhDYO9F);
-    height: 280px;
-    background-size: cover;
-} */
-/* .blouses{
-    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtMf72v_NWqs85_Yq-T5_rRPfGbAaxrKcxLft5NEqKNb-HQ3D8);
-    height: 280px;
-    background-size: cover;
-} */
-/* .bags{
-    background-image: url(https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcR_VZmkNCkvM1qSGO1C_r1iBioMv8vEUcAG2oXLXg8PDswQnehj2AC0TKNiKiH6u-X1Rf2ArTNxpA5yFcFd97qIVwsN9lGbwcLAGPRHrfk&usqp=CAE);
-    height: 270px;
-    background-size: cover;
-} */
-/* .jawellery{
-    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ08V0vvLH6uWga4xWEgAErbyfNA88W0qY5ZeIA8xosSj2uVfQS);
-    height: 230px;
-    background-size: cover;
-    width: 200%;
-} */
-/* .skirts{
-    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQlipCj1YVQTxVJyvJb4-TopE1OrFSARuWLbB04ItnsW5q6c6TD);
-    height: 230px;
-    background-size: cover;
-    width: 200%;
-} */
 .saleContainer{
     border-color:#E7B2A5 ;
     border-width: 15px;
@@ -176,6 +129,21 @@ background-size: cover;
     text-shadow: #E7B2A5 2px  2px;
     font-weight: bolder;
     font-size: 5rem;
+}
+@media (max-width:800px) {
+    .topContainerHeading {
+      font-size: 5rem;
+    }
+    .saleHeading{
+        margin-top: 5%;
+        font-size:3.7rem ;
+    }
+}
+.cardWithTypesClothes{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .loginForm{
     margin: 5% auto 2% auto;
@@ -213,4 +181,43 @@ background-size: cover;
 }
 .newProductFormButton{
     width: 100%;
+}
+.cardsInBusket{
+    margin-bottom:5%;
+    text-align: center;
+    margin-left:auto;
+    margin-right: auto;
+    width: 90%;
+}
+.shoppingBusketContainer{
+    margin-top:5% ;
+    margin-right:auto;
+    margin-left:auto ;
+    margin-bottom:5%;
+    text-align: center;
+}
+.deleteAllProductsButton{
+    margin-top:5%
+}
+.toPayCol{
+    background-color: rgba(231, 178, 165);
+    height: 230px;
+}
+.toPayButton{
+    margin-top:5%;
+}
+.toPayHeading{
+    font-size: x-large;
+    font-weight: bolder;
+    margin-top:5%;
+}
+.toPayDiv{
+    margin-top:auto;
+    margin-bottom:auto;
+}
+.productsAndButtonCol{
+    text-align: center;
+}
+.messageAboutSentOrder{
+    margin-top:50px;
 }

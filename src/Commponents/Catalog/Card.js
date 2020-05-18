@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card'
 
 function Cards(props) {
-    
     return (
         <Card style={{ width: '18rem' }}className="allCard">
             <Card.Img variant="top" src={props.image} />

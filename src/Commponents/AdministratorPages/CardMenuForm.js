@@ -36,10 +36,8 @@ class CardMenuForm extends Component {
             redirect: false,
         };
     }
-    debugger;
     createNewCardMenu = (event) => {
         event.preventDefault();
-        debugger;
         fetch('http://localhost:8080/cardMenu/', {
             method: 'POST',
             headers: {
@@ -70,7 +68,6 @@ class CardMenuForm extends Component {
             });
     }
     changeHandler = (input, value) => {
-        debugger;
         this.setState(prevState => {
             let isValid = true;
             let validationValue = true;
@@ -104,7 +101,6 @@ class CardMenuForm extends Component {
         });
     }
     checkAllForm = () => {
-        debugger;
         this.setState(prevState => {
             for (const input in prevState.cardMenuForm) {
                 const item = this.state.cardMenuForm[input];

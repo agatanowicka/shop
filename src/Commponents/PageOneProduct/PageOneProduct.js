@@ -23,16 +23,11 @@ class PageOneProduct extends Component {
             typeOfMaterial: '',
             careTips: '',
             sizes: [],
-            productId: ''
+            product_Id: ''
         };
     }
-    debugger;
     getDataAboutProduct() {
         const productId = this.props.match.params.id;
-        this.setState({
-            productId
-        })
-        debugger;
         fetch('http://localhost:8080/colection/product/' + productId, { method: 'GET' })
             .then(res => {
                 if (res.status !== 200) {
@@ -42,9 +37,7 @@ class PageOneProduct extends Component {
             })
             .then(resData => {
                 const sizes = resData.sizeAndQuantity
-                    // .filter(obj => obj.quanity > 0)
                     .map(obj => obj.size)
-                debugger;
                 this.setState({
                     images: resData.images,
                     name: resData.name,
@@ -53,7 +46,8 @@ class PageOneProduct extends Component {
                     fabric: resData.fabric,
                     typeOfMaterial: resData.typeOfMaterial,
                     careTips: resData.careTips,
-                    sizes: sizes
+                    sizes: sizes,
+                    product_Id:resData._id
                 })
             })
             .catch(err => {
@@ -79,7 +73,8 @@ class PageOneProduct extends Component {
                                 sizes={this.state.sizes}
                                 name={this.state.name}
                                 price={this.state.price}
-                                productId={this.state.productId}
+                                productId={this.state.product_Id}
+                                images={this.state.images}
                             />
                             <Parcel />
                         </Col>

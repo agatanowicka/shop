@@ -14,7 +14,6 @@ class Catalog extends Component {
         }
     }
     getAllProducts() {
-        debugger;
         let type = this.props.match.params.type;
         
 let path='';
@@ -23,7 +22,6 @@ if(type) {
 }
         fetch(`http://localhost:8080/colection/product?${path}`, { method: 'GET' })
             .then(res => {
-                debugger;
                 if (res.status !== 200) {
                     return alert('Failed to fetch status')
                 }
@@ -35,7 +33,6 @@ if(type) {
                 })
             })
             .catch(err => {
-                debugger;
                 console.log(err);
             })
     }

@@ -80,10 +80,8 @@ class CardMenuForm extends Component {
             sizeAndQuantityErrMessage: ''
         };
     }
-    debugger;
     createNewProduct = (event) => {
         event.preventDefault();
-        debugger;
         fetch('http://localhost:8080/colection/product', {
             method: 'POST',
             headers: {
@@ -122,17 +120,14 @@ class CardMenuForm extends Component {
             });
     }
     getTypes = () => {
-        debugger;
         fetch('http://localhost:8080/cardMenu/', { method: 'GET' })
             .then(res => {
-                debugger;
                 if (res.status !== 200) {
                     return alert('Failed to fetch status')
                 }
                 return res.json();
             })
             .then(resData => {
-                debugger
                 const types = resData.map(card =>
                     card.type
                 );
@@ -147,7 +142,6 @@ class CardMenuForm extends Component {
             })
     }
     changeHandler = (input, value) => {
-        debugger;
         this.setState(prevState => {
             let isValid = true;
             let validationValue = true;
@@ -160,7 +154,6 @@ class CardMenuForm extends Component {
                 }
             }
             isValid = isValid && validationValue;
-            debugger
             const updatedForm = {
                 ...prevState.newProductForm,
                 [input]: {
@@ -174,7 +167,6 @@ class CardMenuForm extends Component {
             for (const inputName in updatedForm) {
                 formIsValid = formIsValid && updatedForm[inputName].valid;
             }
-            debugger
             return {
                 newProductForm: updatedForm,
                 formIsValid: formIsValid
@@ -182,7 +174,6 @@ class CardMenuForm extends Component {
         });
     }
     checkAllForm = () => {
-        debugger;
         this.setState(prevState => {
             for (const input in prevState.newProductForm) {
                 const item = this.state.newProductForm[input];
@@ -198,7 +189,6 @@ class CardMenuForm extends Component {
         })
     }
     addImage = () => {
-        debugger
         if (this.state.image !== '') {
             this.state.images.push(this.state.image)
             this.setState({
@@ -224,7 +214,6 @@ class CardMenuForm extends Component {
     addSizeAndQuantity = () => {
         let errMessage;
         if (this.state.size !== '' && this.state.quantity !== "") {
-            debugger
             let thisSizeExist = false;
             for (let i = 0; i < this.state.sizeAndQuantity.length; i++) {
                 if (this.state.sizeAndQuantity[i].size === this.state.size) {
@@ -292,7 +281,6 @@ class CardMenuForm extends Component {
                             onChange={this.typeChangeHandler}
                             >
                             {this.state.types.map(option => {
-                                debugger
                                 return (
                                     <option>{option}</option>
                                 )

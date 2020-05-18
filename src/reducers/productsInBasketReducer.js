@@ -5,7 +5,6 @@ export const initialState = {
 }
 
 export default function productsInBasketReducer(state = initialState, action) {
-  debugger;
   switch (action.type) {
     case actions.GET_PRODUCTS_IN_BASKET:
       return { ...state }
@@ -16,6 +15,14 @@ export default function productsInBasketReducer(state = initialState, action) {
           action.payload
         ]
       })
+    case actions.DELETE_PRODUCT_FROM_BUSKET:
+      return {
+        productsInBasket: state.productsInBasket.filter((item, index) => index !== action.payload)
+      }
+    case actions.DELETE_ALL_PRODUCTS_FROM_BUSKET:
+      return {
+        productsInBasket: []
+      }
     default:
       return state
   }

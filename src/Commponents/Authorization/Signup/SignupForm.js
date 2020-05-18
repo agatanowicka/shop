@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -50,17 +50,12 @@ class SignupForm extends Component {
                 }
             },
             formIsValid: false,
-            isAuth: false,
-            authLoading: false,
             redirect: false,
         };
     }
-    debugger;
     createNewAccount = (event) => {
         event.preventDefault();
-        debugger;
         const formData = this.state.signupForm;
-        this.setState({ authLoading: true });
         fetch('http://localhost:8080/user/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -84,20 +79,14 @@ class SignupForm extends Component {
             .then(resData => {
                 console.log(resData);
                 this.setState({
-                    isAuth: false, 
-                    authLoading: false, 
-                    redirect: true });
+                    redirect: true
+                });
             })
             .catch(err => {
                 console.log(err);
-                this.setState({
-                    isAuth: false,
-                    authLoading: false,
-                });
             });
     }
     changeHandler = (input, value) => {
-        debugger;
         this.setState(prevState => {
             let isValid = true;
             let validationValue = true;
@@ -131,8 +120,6 @@ class SignupForm extends Component {
         });
     }
     checkAllForm = () => {
-        debugger;
-
         this.setState(prevState => {
             for (const input in prevState.signupForm) {
                 const item = this.state.signupForm[input];
@@ -142,7 +129,6 @@ class SignupForm extends Component {
             }
         })
     }
-
     render() {
         if (this.state.redirect && this.state.formIsValid) {
             return <Redirect to="/Login" />
@@ -162,7 +148,6 @@ class SignupForm extends Component {
                             isValid={this.state.signupForm['firstName'].valid}
                         />
                         <Form.Label className="validMessage">{this.state.signupForm.firstName.validationMessage}</Form.Label>
-
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Last name</Form.Label>
@@ -224,6 +209,5 @@ class SignupForm extends Component {
             </Authorization>
         )
     }
-
 }
 export default SignupForm

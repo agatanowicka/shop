@@ -7,7 +7,6 @@ import { Redirect } from 'react-router-dom';
 import Authorization from '../Authorization'
 
 class LoginForm extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -28,7 +27,6 @@ class LoginForm extends Component {
         }
     }
     changeHandler = (input, value) => {
-        debugger;
         this.setState(prevState => {
             let isValid = true;
             let validationValue = true;
@@ -62,7 +60,6 @@ class LoginForm extends Component {
         });
     }
     checkAllForm = () => {
-        debugger;
         this.setState(prevState => {
             for (const input in prevState.loginForm) {
                 const item = this.state.loginForm[input];
@@ -74,7 +71,6 @@ class LoginForm extends Component {
     }
 
     render() {
-        debugger
         if (this.props.redirect && this.state.formIsValid) {
             return <Redirect to="/" />
         }
@@ -106,7 +102,7 @@ class LoginForm extends Component {
                             isValid={this.state.loginForm['password'].valid} />
                         <Form.Label className="validMessage">{this.state.loginForm.password.validationMessage}</Form.Label>
                     </Form.Group>
-                    <Button onClick={this.checkAllForm} className="loginButton" variant="dark" type="submit"  loading={this.props.loading}>Log In</Button>
+                    <Button onClick={this.checkAllForm} className="loginButton" variant="dark" type="submit"  >Log In</Button>
                 </Form>
                 </Authorization>
         )

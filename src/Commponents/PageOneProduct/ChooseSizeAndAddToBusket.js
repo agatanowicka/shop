@@ -7,13 +7,13 @@ import { connect } from 'react-redux';
 import { updateProductsInBasket } from '../../actions/productsInBasketActions';
 import Dropdown from 'react-bootstrap/Dropdown'
 const addToBusket = (dispatch, props, size) => {
-    debugger
     dispatch(updateProductsInBasket(
         {
             name: props.name,
             price: props.price,
+            productId: props.productId,
             size: size,
-            productId: props.productId
+            images:props.images
         }
     ))
 };
@@ -21,7 +21,7 @@ class ChooseSizeAndAddToBusket extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            size: ''
+            size: '',
         }
         this.handler = (event) => {
             event.preventDefault();
@@ -29,7 +29,6 @@ class ChooseSizeAndAddToBusket extends Component {
         };
     }
     sizeChangeHandler = (event) => {
-        debugger;
         this.setState({
             size: event.target.innerHTML
         })

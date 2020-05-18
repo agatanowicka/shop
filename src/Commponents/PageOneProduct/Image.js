@@ -4,7 +4,6 @@ import Carousel from 'react-bootstrap/Carousel'
 
 function  Image(props){
 
-    debugger;
         return (
             <Carousel >
                { props.images.map(item => {

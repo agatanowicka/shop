@@ -16,10 +16,8 @@ class CardMenu extends Component {
     }
 
     getData = () => {
-        debugger;
         fetch('http://localhost:8080/cardMenu/', { method: 'GET' })
             .then(res => {
-                debugger;
                 if (res.status !== 200) {
                     return alert('Failed to fetch status')
                 }
@@ -35,26 +33,25 @@ class CardMenu extends Component {
             })
     }
     redirectPage = (type) => {
-        debugger
         this.setState({
-             redirect: type
+            redirect: type
         })
     }
     render() {
-        if(this.state.redirect){
-            return <Redirect  to={{
-                pathname: "/Catalog/"+this.state.redirect,
-              }} />
+        if (this.state.redirect) {
+            return <Redirect to={{
+                pathname: "/Catalog/" + this.state.redirect,
+            }} />
         }
         return (
             <div>
-                <Container>
-                    <Row>
+                <Container >
+                    <Row >
                         {this.state.cards.map(card => {
                             return (
-                                <Col xs={12} md={4}>
+                                <Col xs={12} s={12} md={6} lg={4}>
                                     <a onClick={() => this.redirectPage(card.type)}>
-                                        <Card style={{ backgroundImage: this.state.image, width: '300px' }}>
+                                        <Card style={{ backgroundImage: this.state.image, width: '300px' }} className='cardWithTypesClothes'>
                                             <Card.Body >
                                                 <Card.Title className="cardHomeTitle"><h1>{card.title}</h1></Card.Title>
                                             </Card.Body>
