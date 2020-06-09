@@ -5,8 +5,8 @@ import Catalog from "./Commponents/Catalog/Catalog";
 import HomePage from "./Commponents/Home/HomePage";
 import LoginPage from "./Commponents/Authorization/Login/LoginPage";
 import SignupPage from "./Commponents/Authorization/Signup/SignupPage";
-import CardMenuForm from "./Commponents/AdministratorPages/CardMenuForm";
-import AddNewProductForm from './Commponents/AdministratorPages/AddNewProductForm';
+import CardMenuForm from "./Commponents/AdministratorPages/AddCardMenu/CardMenuForm";
+import AddNewProductForm from './Commponents/AdministratorPages/AddNewProduct/AddNewProductForm';
 import SchoppingBasketPage from './Commponents/SchoppingBasket/SchoppingBasketPage';
 import Logout from './Commponents/Authorization/Logout/Logout';
 

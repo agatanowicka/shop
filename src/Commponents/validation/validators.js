@@ -6,21 +6,21 @@ export const required = (value) => {
   }
   return "";
 };
- 
+
 export const email = (value) => {
   if (!validator.isEmail(value)) {
     return `${value} is not a valid email.`
   }
   return "";
 };
- 
+
 export const lt = (value, minLength) => {
   if (value.toString().trim().length < minLength) {
     return `The value exceeded ${minLength} symbols.`
   }
   return "";
 };
- export const password = (value, components) => {
+export const password = (value, components) => {
   if (value !== components.value) {
     return <span className="error">Passwords are not equal.</span>
   }

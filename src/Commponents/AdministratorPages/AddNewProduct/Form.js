@@ -27,12 +27,13 @@ function AllForm(props) {
             {inputsData.map(input => {
                 return (
                     <Input
-                        type={"text"}
+                        type={input.type}
                         label={input.label}
                         onChange={(e) => props.changeHandler(`${input.title}`, e.target.value)}
                         value={props.state.newProductForm[`${input.title}`].value}
                         isValid={props.state.newProductForm[`${input.title}`].valid}
                         validationMessage={props.state.newProductForm[`${input.title}`].validationMessage}
+                        min={input.min}
                         key={input.id}
                     />
                 )

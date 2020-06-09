@@ -26,6 +26,7 @@ function SizeAndQuantity(props) {
                     </Col>
                     <Col sm={4} style={{ paddingRight: '0px' }} >
                         <Input
+                            min={"0"}
                             type={"number"}
                             label={"Quantity"}
                             onChange={props.quantityChangeHandler}

@@ -1,10 +1,9 @@
 .productImage{
-
 height: 600px;
 margin-right: 5%;
 }
 .price{
-    color: rgb(231, 0, 0);
+    color:black;
 }
 .shoppingCartButton{
     width: 100%;
@@ -41,15 +40,14 @@ margin-bottom: 5%;
 }
 .header{
     background-color: #E7B2A5;
-    height: 80px;
 }
-.linkItem{
-    color:white;
+
+a.linkItem.nav-link{
     font-size: 1.5rem;
     font-weight: bolder;
-    
+    padding-right: 10px;
 }
-.linkItem:hover{
+a.nav-link:hover{
     color:rgb(51, 50, 50);
 }
 .imageAndBasicInfo{
@@ -75,10 +73,17 @@ margin-bottom: 5%;
 }
 .cardTitle{
     height: 50px;
+    color:black;
+}
+.cardPrice{
+    color:black;
 }
 .allCard{
     margin-top: 5%;
     margin-bottom:5%;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 .topContainerBackground{
         background: url(https://polki.pl/foto/4_3_LARGE/trendy-wiosna-lato-2020-10-hitow-sezonu-2449281.jpg) no-repeat;
@@ -110,40 +115,47 @@ margin-bottom: 5%;
     margin:1%;   
 }
 .cardHomeTitle{
-    color: rgb(247, 241, 240);
-    text-shadow: rgb(51, 50, 50) 4px 3px;
+    color: rgb(51, 50, 50);
     font-size: 10rem;
     text-align: center;
-    margin-top: 30% ;
+    margin-top: 5% ;
 }
 .saleContainer{
-    border-color:#E7B2A5 ;
-    border-width: 15px;
-    border-style: solid;
-    height: 250px;
+    height: 500px;
+    padding-top:50px;
+}
+.newsletterContainer{
+    background-color: rgb(223, 223, 223);
+    width: 80%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 50px;
     text-align: center;
-    background-color:rgb(240, 130, 198) ;
 }
-.saleHeading{
-    color: rgb(255, 255, 255);
-    text-shadow: #E7B2A5 2px  2px;
-    font-weight: bolder;
-    font-size: 5rem;
+.bagImage{
+    margin-top:50px;
+    margin-bottom: auto;
+    height:300px;
 }
+.newletterHeading{
+    padding-top: 150px;
+    padding-bottom: auto;
+}
+
 @media (max-width:800px) {
     .topContainerHeading {
       font-size: 5rem;
     }
-    .saleHeading{
-        margin-top: 5%;
-        font-size:3.7rem ;
-    }
+   
 }
 .cardWithTypesClothes{
     margin-top: 5%;
     margin-bottom: 5%;
     margin-left: auto;
     margin-right: auto;
+    background-size: cover;
 }
 .loginForm{
     margin: 5% auto 2% auto;
@@ -200,14 +212,17 @@ margin-bottom: 5%;
     margin-top:5%
 }
 .toPayCol{
-    background-color: rgba(231, 178, 165);
-    height: 230px;
+    height: 100%;
+    border-color: rgba(231, 178, 165);
+    border-style: solid;
+    border-width: 2px;
+    width: 100%;
 }
 .toPayButton{
     margin-top:5%;
 }
 .toPayHeading{
-    font-size: x-large;
+    font-size: 2rem;
     font-weight: bolder;
     margin-top:5%;
 }
@@ -220,4 +235,107 @@ margin-bottom: 5%;
 }
 .messageAboutSentOrder{
     margin-top:50px;
+}
+.imageInCollection{
+    height: 350px;
+    width: 100%;
+}
+.chooseSizeButton{
+    float:left;
+    color:rgb(51, 50, 50);
+}
+.dropdown-toggle::after{
+    float: right;
+    margin-top:2.5%;
+}
+.carousel-control-next{
+    width:50px;
+    height: 50px;
+    background-color:rgb(51, 50, 50) ;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+.carousel-control-prev{
+    width:50px;
+    height: 50px;
+    background-color:rgb(51, 50, 50) ;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+.divWithSizeAndDetails{
+height: 100%;
+}
+.tabsContent{
+    border: solid;
+    border-top: hidden;
+    border-color: #E7B2A5;
+    border-width: 1px;
+    height: 560px;
+    
+}
+.detailsItemHeading{
+    font-weight: bold;
+    color:rgb(51, 50, 50);
+    font-size: 1.2rem;
+    padding-left: 40px;
+    display: inline;
+}
+.detailsItemText{
+    padding-left: 10px;
+    display: inline;
+}
+.detailsItem{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.addToShoppingCartInfo{
+    color:rgb(207, 124, 104);
+    font-weight: bold;
+}
+#noanim-tab-example-tab-details.nav-item.nav-link.active{
+    background-color: #E7B2A5;
+    color:black;
+}
+#noanim-tab-example-tab-details{
+    border-color: #E7B2A5;
+    border-width: 1px;
+    border-style: solid;
+    color: black;
+    background-color: rgba(231, 178, 165, 0.363);
+}
+#noanim-tab-example-tab-size.nav-item.nav-link.active{
+    background-color: #E7B2A5;
+    color:black;
+}
+#noanim-tab-example-tab-size{
+    border-color: #E7B2A5;
+    border-width: 1px;
+    border-style: solid;
+    color: black;
+    background-color: rgba(231, 178, 165, 0.192);
+}
+.tabsWithSizeAndDetails.nav-tabs{
+    border-bottom:#E7B2A5;
+    border-width: 1px;
+    border-style: solid;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+}
+#tableTr {
+    background-color: rgba(231, 178, 165, 0.192);
+}
+#table_tr:hover{
+    background-color: #E7B2A5;
+}
+.emptySchoppingCardrHeading{
+    padding-top: 15%;
+    margin-bottom: auto;
+}
+.videoTag{
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+.videoCol{
+    text-align: center;
 }

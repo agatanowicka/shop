@@ -1,9 +1,9 @@
 
 
-function createNewProduct(event, props) {
+function createNewProduct( props) {
     debugger;
-    event.preventDefault();
-    fetch('http://localhost:8080/colection/product', {
+   
+    return fetch('http://localhost:8080/colection/product', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -30,10 +30,11 @@ function createNewProduct(event, props) {
             if (res.status !== 200 && res.status !== 201) {
                 console.log('Creating a product failed!');
             }
-            return res.json();
+            return true;
         })
         .catch(err => {
             console.log(err);
+            return false;
         });
 }
 export default createNewProduct

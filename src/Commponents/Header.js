@@ -5,7 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import Navbar from 'react-bootstrap/Navbar';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import getClothesTypes from './GetClothesTypes';
+import getClothesTypes from './getClothesTypes';
 
 class Header extends Component {
     constructor(props) {
@@ -16,9 +16,10 @@ class Header extends Component {
         }
     }
     getData = async () => {
+        debugger
         const types = await getClothesTypes();
         this.setState({
-            types
+            types:types
         })
     }
     render() {

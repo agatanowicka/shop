@@ -1,97 +1,70 @@
 import React, { Component } from 'react';
-import { required } from '../validation/validators';
+import { required } from '../../validation/validators';
 import { Redirect } from 'react-router-dom';
 import createNewProduct from './createNewProduct';
-import getClothesTypes from '../GetClothesTypes';
+import getClothesTypes from '../../getClothesTypes';
 import AllForm from './Form';
 
-class CardMenuForm extends Component {
+class NewProductForm extends Component {
 
     constructor(props) {
+        const initFormInputState = {
+            value: '',
+            valid: false,
+            validators: [required],
+            validationMessage: ""
+        };
         super(props);
-        let types = this.props.getTypes;
+        this.getData();
+        const token = localStorage.getItem('token');
         this.state = {
             newProductForm: {
-                name: {
-                    value: '',
-                    valid: false,
-                    validators: [required],
-                    validationMessage: ""
-                },
-                color: {
-                    value: '',
-                    valid: false,
-                    validators: [required],
-                    validationMessage: ""
-                },
-                price: {
-                    value: '',
-                    valid: false,
-                    validators: [required],
-                    validationMessage: ""
-                },
-                fabric: {
-                    value: '',
-                    valid: false,
-                    validators: [required],
-                    validationMessage: ""
-                },
-                typeOfMaterial: {
-                    value: '',
-                    valid: false,
-                    validators: [required],
-                    validationMessage: ""
-                },
-                careTips: {
-                    value: '',
-                    valid: false,
-                    validators: [required],
-                    validationMessage: ""
-                },
-                details: {
-                    value: '',
-                    valid: false,
-                    validators: [required],
-                    validationMessage: ""
-                },
-                productNumber: {
-                    value: '',
-                    valid: false,
-                    validators: [required],
-                    validationMessage: ""
-                },
+                name: {...initFormInputState},
+                color:  {...initFormInputState},
+                price:  {...initFormInputState},
+                fabric:  {...initFormInputState},
+                typeOfMaterial:  {...initFormInputState},
+                careTips:  {...initFormInputState},
+                details:  {...initFormInputState},
+                productNumber:  {...initFormInputState}
             },
             formIsValid: false,
             redirect: false,
-            isAuth: false,
-            isAdministrator: false,
             type: '',
             types: [],
             sizeAndQuantity: [],
             quantity: '',
             size: "",
             sizeAndQuantityErrMessage: '',
-            image:'',
-            images:[]
+            image: '',
+            images: [],
+            messageFrombackend: '',
+            token: token,
         };
     }
-    createProduct = async () => {
-        await createNewProduct();
-        this.setState({
-            redirect: true
-        })
+    createProduct = async (event) => {
+        event.preventDefault();
+        const isCreationSuccesfull = await createNewProduct(this.state);
+        if (isCreationSuccesfull) {
+            this.setState({
+                redirect: true
+            })
+        }
     }
+
     getData = async () => {
+        debugger
         const types = await getClothesTypes();
         const allTypes = [];
         types.map(type =>
-            allTypes.push({ option: type }))
+            allTypes.push({ option: type.type }))
         this.setState({
             types: allTypes
         })
     }
 
     changeHandler = (input, value) => {
+        debugger
         this.setState(prevState => {
             let isValid = true;
             let validationValue = true;
@@ -115,6 +88,7 @@ class CardMenuForm extends Component {
             };
             let formIsValid = true;
             for (const inputName in updatedForm) {
+                debugger
                 formIsValid = formIsValid && updatedForm[inputName].valid;
             }
             return {
@@ -187,7 +161,6 @@ class CardMenuForm extends Component {
                 sizeAndQuantityErrMessage: errMessage
             })
         }
-
     }
     render() {
         if (this.state.redirect && this.state.formIsValid) {
@@ -203,7 +176,7 @@ class CardMenuForm extends Component {
                     addSizeAndQuantity={this.addSizeAndQuantity}
                     checkAllForm={this.checkAllForm}
                     changeHandler={this.changeHandler}
-                    onSubmit={(event) => { this.createProduct() }}
+                    onSubmit={(event) => this.createProduct(event)}
                     addImage={this.addImage}
                     imageChangeHandler={this.imageChangeHandler}
                 />
@@ -212,4 +185,4 @@ class CardMenuForm extends Component {
     }
 }
 
-export default CardMenuForm
+export default NewProductForm

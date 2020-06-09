@@ -12,6 +12,7 @@ function Input(props) {
                     onChange={props.onChange}
                     value={props.value}
                     isValid={props.isValid}
+                    min={props.min}
                 />
                 <Form.Label className="validMessage">{props.validationMessage}</Form.Label>
             </Form.Group>

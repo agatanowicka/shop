@@ -2,42 +2,52 @@ const inputsData = [
     {
         id: 1,
         label: 'Name',
-        title: 'name'
+        title: 'name', 
+        type:'text'
     },
     {
         id: 2,
         label: 'Color',
-        title: 'color'
+        title: 'color', 
+        type:'text'
     },
     {
         id: 3,
         label: 'Price',
-        title: 'price'
+        title: 'price', 
+        type:'number',
+        min:'0'
+
     },
     {
         id: 4,
         label: 'Fabric',
-        title: 'fabric'
+        title: 'fabric', 
+        type:'text'
     },
     {
         id: 5,
         label: 'Type of material',
-        title: 'typeOfMaterial'
+        title: 'typeOfMaterial', 
+        type:'text'
     },
     {
         id: 6,
         label: 'Care Tips',
-        title: 'careTips'
+        title: 'careTips', 
+        type:'text'
     },
     {
         id:7,
         label: 'Details',
-        title: 'details'
+        title: 'details', 
+        type:'text'
     },
     {
         id: 8,
         label: 'Product number',
-        title: 'productNumber'
+        title: 'productNumber',
+        type:'text'
     },
 ]
 export default inputsData
