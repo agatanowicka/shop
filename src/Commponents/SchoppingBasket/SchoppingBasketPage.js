@@ -58,6 +58,9 @@ class SchoppingBasketPage extends Component {
       })
     })
       .then(res => {
+        if (res.status > 210) {
+          throw new Error('wrong status');
+        }
         this.setState({ message: 'Your order has been sent!' });
         this.deleteAll(event);
         return res.json();
@@ -105,34 +108,37 @@ class SchoppingBasketPage extends Component {
   }
   render() {
     return (
-      <Container className='shoppingBusketContainer'>
-        <Row>
-          <Col sm={12} md={6} className='productsAndButtonCol'>
-            {this.renderProducts()}
-            <Button
-              variant="dark"
-              className='deleteAllProductsButton'
-              onClick={this.deleteAll.bind()}>
-              Delete all products
+      <div>
+        {this.state.productsIdAndSize.length > 0 ?
+          <Container className='shoppingBusketContainer'>
+            <Row>
+              <Col sm={12} md={6} className='productsAndButtonCol'>
+                {this.renderProducts()}
+                {this.state.productsIdAndSize.length > 0 ? <Button
+                  variant="dark"
+                  className='deleteAllProductsButton'
+                  onClick={this.deleteAll.bind()}>
+                  Delete all products
+            </Button> : ''}
+              </Col>
+              <Col sm={12} md={6} className='toPayCol'>
+                <div className='toPayDiv'>
+                  <h4 className='toPayHeading'>To pay</h4>
+                  <h4 className='toPayHeading'>{this.state.toPay}</h4>
+                  {this.props.isAuth ?
+                    <Button className='toPayButton' variant="dark" onClick={this.createNewOrder.bind()}>
+                      Submit your order
             </Button>
-          </Col>
-          <Col sm={12} md={6} className='toPayCol'>
-            <div className='toPayDiv'>
-              <h4 className='toPayHeading'>To pay</h4>
-              <h4 className='toPayHeading'>{this.state.toPay}</h4>
-              {this.props.isAuth ?
-                <Button className='toPayButton' variant="dark" onClick={this.createNewOrder.bind()}>
-                  Submit your order
-            </Button>
-                : <Button className='toPayButton' variant="dark" href='http://localhost:3000/Login'>
-                  Login
-                </Button>
-              }
-              <h6 className='messageAboutSentOrder'>{this.state.message}</h6>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+                    : <Button className='toPayButton' variant="dark" href='http://localhost:3000/Login'>
+                      Login
+                </Button>}
+                  <h6 className='messageAboutSentOrder'>{this.state.message}</h6>
+                </div>  </Col>
+            </Row>
+          </Container> :<Container fluid><Row><Col className='videoCol'> <video className='videoTag' autoPlay loop muted> <source src="/images/emptySchoppingCart2.mp4" type="video/mp4" /></video></Col>
+            </Row>
+          </Container>}
+      </div>
     )
   }
 }
