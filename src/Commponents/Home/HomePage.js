@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardMenu from "./CardMenu";
-import Sale from "./Sale"
+import Sale from "./Sale";
+import Newsletter from './Newsletter';
 
-class HomePage extends Component {
-    render() {
-        return (
-            <div>
-                <div className="topContainerBackground">
-                    <h1 className="topContainerHeading">Spring 2020</h1>
-                </div>
-                <Sale />
-               <CardMenu />
+function HomePage() {
+    return (
+        <div>
+            <div className="topContainerBackground">
+                <h1 className="topContainerHeading">Spring 2020</h1>
             </div>
-        )
-    }
-
+            <Sale />
+            <CardMenu />
+            <Newsletter />
+        </div>
+    )
 }
 export default HomePage
