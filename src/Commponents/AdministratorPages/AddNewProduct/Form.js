@@ -12,10 +12,7 @@ function AllForm(props) {
     return (
         <Form className='newProductForm' onSubmit={props.onSubmit} >
             <Images
-                imageChangeHandler={props.imageChangeHandler}
-                addImage={props.addImage}
-                image={props.state.image}
-                images={props.state.images}
+                imagesChangeCallback={props.imagesChangeCallback}
             />
             <SelectInput
                 label={'Type'}
@@ -39,13 +36,7 @@ function AllForm(props) {
                 )
             })}
             <SizeAndQuantity
-                sizeChangeHandler={props.sizeChangeHandler}
-                sizeValue={props.state.size}
-                quantityChangeHandler={props.quantityChangeHandler}
-                addSizeAndQuantity={props.addSizeAndQuantity}
-                sizeAndQuantityErrMessage={props.state.sizeAndQuantityErrMessage}
-                quantityValue={props.state.quantity}
-                sizeAndQuantity={props.state.sizeAndQuantity}
+                updateCallback={props.addSizeAndQuantityCallback}
             />
             <Button
                 onClick={props.checkAllForm}
@@ -55,6 +46,7 @@ function AllForm(props) {
             >
                 Create new card
             </Button>
+            <Form.Label>{props.state.messageFromBackend}</Form.Label>
         </Form>
     )
 }

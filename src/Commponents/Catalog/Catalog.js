@@ -9,6 +9,9 @@ class Catalog extends Component {
     constructor(props) {
         super(props);
         this.getAllProducts();
+        this.state = {
+            clothes:[]
+        }
 
     }
     getAllProducts() {

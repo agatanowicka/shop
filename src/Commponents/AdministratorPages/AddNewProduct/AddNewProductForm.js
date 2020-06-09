@@ -19,41 +19,42 @@ class NewProductForm extends Component {
         const token = localStorage.getItem('token');
         this.state = {
             newProductForm: {
-                name: {...initFormInputState},
-                color:  {...initFormInputState},
-                price:  {...initFormInputState},
-                fabric:  {...initFormInputState},
-                typeOfMaterial:  {...initFormInputState},
-                careTips:  {...initFormInputState},
-                details:  {...initFormInputState},
-                productNumber:  {...initFormInputState}
+                name: { ...initFormInputState },
+                color: { ...initFormInputState },
+                price: { ...initFormInputState },
+                fabric: { ...initFormInputState },
+                typeOfMaterial: { ...initFormInputState },
+                careTips: { ...initFormInputState },
+                details: { ...initFormInputState },
+                productNumber: { ...initFormInputState }
             },
             formIsValid: false,
             redirect: false,
             type: '',
             types: [],
             sizeAndQuantity: [],
-            quantity: '',
-            size: "",
-            sizeAndQuantityErrMessage: '',
-            image: '',
             images: [],
-            messageFrombackend: '',
+            messageFromBackend: '',
             token: token,
         };
     }
     createProduct = async (event) => {
+        debugger
         event.preventDefault();
         const isCreationSuccesfull = await createNewProduct(this.state);
         if (isCreationSuccesfull) {
             this.setState({
+                messageFromBackend: 'Product is created!',
                 redirect: true
+            })
+        } else {
+            this.setState({
+                messageFromBackend: 'The product has not been created!',
             })
         }
     }
 
     getData = async () => {
-        debugger
         const types = await getClothesTypes();
         const allTypes = [];
         types.map(type =>
@@ -64,7 +65,6 @@ class NewProductForm extends Component {
     }
 
     changeHandler = (input, value) => {
-        debugger
         this.setState(prevState => {
             let isValid = true;
             let validationValue = true;
@@ -107,60 +107,20 @@ class NewProductForm extends Component {
             }
         })
     }
-    imageChangeHandler = (event) => {
-        this.setState({
-            image: event.target.value
-        })
-    }
-    addImage = () => {
-        if (this.state.image !== '') {
-            this.state.images.push(this.state.image)
-            this.setState({
-                image: ''
-            })
-        }
-    }
-    quantityChangeHandler = (event) => {
-        this.setState({
-            quantity: Math.floor(event.target.value)
-        })
-    }
-    sizeChangeHandler = (event) => {
-        this.setState({
-            size: event.target.value
-        })
-    }
     typeChangeHandler = (event) => {
         this.setState({
             type: event.target.value
         })
     }
-    addSizeAndQuantity = () => {
-        let errMessage;
-        if (this.state.size !== '' && this.state.quantity !== "") {
-            let thisSizeExist = false;
-            for (let i = 0; i < this.state.sizeAndQuantity.length; i++) {
-                if (this.state.sizeAndQuantity[i].size === this.state.size) {
-                    thisSizeExist = true;
-                    errMessage = 'This size has already been added';
-                    this.setState({
-                        sizeAndQuantityErrMessage: errMessage
-                    })
-                }
-            }
-            if (!thisSizeExist) {
-                this.state.sizeAndQuantity.push({ size: this.state.size, quantity: this.state.quantity })
-                this.setState({
-                    quantity: '',
-                    sizeAndQuantityErrMessage: ''
-                })
-            }
-        } else {
-            errMessage = 'Size and quantty must be filled out';
-            this.setState({
-                sizeAndQuantityErrMessage: errMessage
-            })
-        }
+    imagesChangeState = (images) => {
+        this.setState({
+            images
+        })
+    }
+    sizeAndQuantitChangeState = (sizeAndQuantity) => {
+        this.setState({
+            sizeAndQuantity
+        })
     }
     render() {
         if (this.state.redirect && this.state.formIsValid) {
@@ -170,15 +130,13 @@ class NewProductForm extends Component {
             <div>
                 <AllForm
                     state={this.state}
-                    quantityChangeHandler={this.quantityChangeHandler}
-                    sizeChangeHandler={this.sizeChangeHandler}
+                    imagesChangeCallback={this.imagesChangeState}
                     typeChangeHandler={this.typeChangeHandler}
-                    addSizeAndQuantity={this.addSizeAndQuantity}
+                    addSizeAndQuantityCallback={this.sizeAndQuantitChangeState}
                     checkAllForm={this.checkAllForm}
                     changeHandler={this.changeHandler}
                     onSubmit={(event) => this.createProduct(event)}
                     addImage={this.addImage}
-                    imageChangeHandler={this.imageChangeHandler}
                 />
             </div>
         )
