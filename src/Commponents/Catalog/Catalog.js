@@ -9,17 +9,14 @@ class Catalog extends Component {
     constructor(props) {
         super(props);
         this.getAllProducts();
-        this.state = {
-            clothes: []
-        }
+
     }
     getAllProducts() {
         let type = this.props.match.params.type;
-        
-let path='';
-if(type) {
-    path = `type=${type}`;
-}
+        let path = '';
+        if (type) {
+            path = `type=${type}`;
+        }
         fetch(`http://localhost:8080/colection/product?${path}`, { method: 'GET' })
             .then(res => {
                 if (res.status !== 200) {
@@ -40,13 +37,16 @@ if(type) {
         return (
             <div>
                 <Container>
-                    <Row>
+                    <Row >
                         {this.state.clothes.map(item => {
                             return (
-                                <Col xs={12} md={4}>
-
-                                    <Card name={item.name} image={item.images} price={item.price} productId={item._id} />
-
+                                <Col s={6} md={6} lg={4} key={item._id}>
+                                    <Card
+                                        name={item.name}
+                                        image={item.images}
+                                        price={item.price}
+                                        productId={item._id}
+                                    />
                                 </Col>
                             )
                         })}
