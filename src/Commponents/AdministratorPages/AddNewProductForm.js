@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { required } from '../validation/validators';
 import { Redirect } from 'react-router-dom';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container'; 
-import Image from 'react-bootstrap/Image';
-import Table from 'react-bootstrap/Table';
+import createNewProduct from './createNewProduct';
+import getClothesTypes from '../GetClothesTypes';
+import AllForm from './Form';
 
 class CardMenuForm extends Component {
 
     constructor(props) {
         super(props);
-        this.getTypes();
+        let types = this.props.getTypes;
         this.state = {
             newProductForm: {
                 name: {
@@ -66,8 +61,6 @@ class CardMenuForm extends Component {
                     validationMessage: ""
                 },
             },
-            image: '',
-            images: [],
             formIsValid: false,
             redirect: false,
             isAuth: false,
@@ -77,70 +70,27 @@ class CardMenuForm extends Component {
             sizeAndQuantity: [],
             quantity: '',
             size: "",
-            sizeAndQuantityErrMessage: ''
+            sizeAndQuantityErrMessage: '',
+            image:'',
+            images:[]
         };
     }
-    createNewProduct = (event) => {
-        event.preventDefault();
-        fetch('http://localhost:8080/colection/product', {
-            method: 'POST',
-            headers: {
-                 'Content-Type': 'application/json',
-                  Authorization: 'Bearer ' + this.props.token 
-                },
-            body: JSON.stringify({
-                images: this.state.images,
-                type: this.state.type,
-                name: this.state.newProductForm.name.value,
-                color: this.state.newProductForm.color.value,
-                price: this.state.newProductForm.price.value,
-                fabric: this.state.newProductForm.fabric.value,
-                typeOfMaterial: this.state.newProductForm.typeOfMaterial.value,
-                careTips: this.state.newProductForm.careTips.value,
-                details: this.state.newProductForm.details.value,
-                productNumber: this.state.newProductForm.productNumber.value,
-                sizeAndQuantity: this.state.sizeAndQuantity,
-            })
+    createProduct = async () => {
+        await createNewProduct();
+        this.setState({
+            redirect: true
         })
-            .then(res => {
-                if (res.status === 422) {
-                    console.log("Validation failed. Make sure the email address isn't used yet!");
-                }
-                if (res.status !== 200 && res.status !== 201) {
-                    console.log('Creating a product failed!');
-                }
-                return res.json();
-            })
-            .then(resData => {
-                console.log(resData);
-                this.setState({ redirect: true });
-            })
-            .catch(err => {
-                console.log(err);
-            });
     }
-    getTypes = () => {
-        fetch('http://localhost:8080/cardMenu/', { method: 'GET' })
-            .then(res => {
-                if (res.status !== 200) {
-                    return alert('Failed to fetch status')
-                }
-                return res.json();
-            })
-            .then(resData => {
-                const types = resData.map(card =>
-                    card.type
-                );
-                this.setState({
-                    types
-                })
-
-
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    getData = async () => {
+        const types = await getClothesTypes();
+        const allTypes = [];
+        types.map(type =>
+            allTypes.push({ option: type }))
+        this.setState({
+            types: allTypes
+        })
     }
+
     changeHandler = (input, value) => {
         this.setState(prevState => {
             let isValid = true;
@@ -245,214 +195,21 @@ class CardMenuForm extends Component {
         }
         return (
             <div>
-                <Form className='newProductForm' onSubmit={this.createNewProduct} >
-                    <Form.Group>
-                        <Container>
-                            <Row>
-                                {this.state.images.map(item => {
-                                    return (<Col md={1}>
-                                        <Image src={item} rounded style={{ width: '50px', height: '60px' }} />
-                                    </Col>)
-                                })}
-                            </Row>
-                        </Container>
-                        <Form.Label>Image</Form.Label>
-                        <Container style={{ width: '100%' }}>
-                            <Row >
-                                <Col sm={8} style={{ padding: '0px' }}>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Image"
-                                        onChange={this.imageChangeHandler}
-                                        value={this.state.image}
-                                        style={{ width: '100%' }}
-                                    />
-                                </Col>
-                                <Col sm={4} style={{ paddingRight: '0px' }} >
-                                    <Button onClick={this.addImage} style={{ width: '100%', backgroundColor: '#E7B2A5', borderColor: 'rgb(240, 130, 198)', borderWidth: '2px' }} variant="primary" >Add image</Button>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Form.Group>
-                    <Form.Group controlId="exampleForm.SelectCustom">
-                        <Form.Label>Type</Form.Label>
-                        <Form.Control as="select" custom
-                            onClick={this.typeChangeHandler}>
-                            onChange={this.typeChangeHandler}
-                            >
-                            {this.state.types.map(option => {
-                                return (
-                                    <option>{option}</option>
-                                )
-                            })}
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Name"
-                            onChange={(e) => this.changeHandler('name', e.target.value)}
-                            value={this.state.newProductForm['name'].value}
-                            isValid={this.state.newProductForm['name'].valid}
-                        />
-                        <Form.Label className="validMessage">{this.state.newProductForm.name.validationMessage}</Form.Label>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Color</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Color"
-                            onChange={(e) => this.changeHandler('color', e.target.value)}
-                            value={this.state.newProductForm.color.value}
-                            isValid={this.state.newProductForm['color'].valid}
-                        />
-                        <Form.Label className="validMessage">{this.state.newProductForm.color.validationMessage}</Form.Label>
-
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Price</Form.Label>
-                        <Form.Control
-                            type="number"
-                            placeholder="Price"
-                            onChange={(e) => this.changeHandler('price', e.target.value)}
-                            value={this.state.newProductForm['price'].value}
-                            isValid={this.state.newProductForm['price'].valid}
-                        />
-                        <Form.Label className="validMessage">{this.state.newProductForm.price.validationMessage}</Form.Label>
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Label>Fabric</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="fabric"
-                            onChange={(e) => this.changeHandler('fabric', e.target.value)}
-                            value={this.state.newProductForm['fabric'].value}
-                            isValid={this.state.newProductForm['fabric'].valid}
-                        />
-                        <Form.Label className="validMessage">{this.state.newProductForm.fabric.validationMessage}</Form.Label>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Type of material</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Type of material"
-                            onChange={(e) => this.changeHandler('typeOfMaterial', e.target.value)}
-                            value={this.state.newProductForm['typeOfMaterial'].value}
-                            isValid={this.state.newProductForm['typeOfMaterial'].valid}
-                        />
-                        <Form.Label className="validMessage">{this.state.newProductForm.typeOfMaterial.validationMessage}</Form.Label>
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Label>Care Tips</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Care tips"
-                            onChange={(e) => this.changeHandler('careTips', e.target.value)}
-                            value={this.state.newProductForm['careTips'].value}
-                            isValid={this.state.newProductForm['careTips'].valid}
-                        />
-                        <Form.Label className="validMessage">{this.state.newProductForm.careTips.validationMessage}</Form.Label>
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Label>Details</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Details"
-                            onChange={(e) => this.changeHandler('details', e.target.value)}
-                            value={this.state.newProductForm['details'].value}
-                            isValid={this.state.newProductForm['details'].valid}
-                        />
-                        <Form.Label className="validMessage">{this.state.newProductForm.details.validationMessage}</Form.Label>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Product number</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Product number"
-                            onChange={(e) => this.changeHandler('productNumber', e.target.value)}
-                            value={this.state.newProductForm['productNumber'].value}
-                            isValid={this.state.newProductForm['productNumber'].valid}
-                        />
-                        <Form.Label className="validMessage">{this.state.newProductForm.productNumber.validationMessage}</Form.Label>
-                    </Form.Group>
-                    <Container style={{ width: '100%' }}>
-                        <Row >
-                            <Col sm={4} style={{ padding: '0px' }}>
-                                <Form.Group controlId="exampleForm.SelectCustom">
-                                    <Form.Label>Size</Form.Label>
-                                    <Form.Control as="select" custom
-                                        onClick={this.sizeChangeHandler}
-                                        onChange={this.sizeChangeHandler}
-                                        value={this.state.size}>
-                                        <option>xs</option>
-                                        <option>s</option>
-                                        <option>m</option>
-                                        <option>l</option>
-                                        <option>xl</option>
-                                        <option>xxl</option>
-                                        <option>xxxl</option>
-                                        <option>32</option>
-                                        <option>34</option>
-                                        <option>36</option>
-                                        <option>38</option>
-                                        <option>40</option>
-                                        <option>42</option>
-                                        <option>44</option>
-                                        <option>37</option>
-                                        <option>38</option>
-                                        <option>39</option>
-                                        <option>40</option>
-                                        <option>41</option>
-                                        <option>one size</option>
-                                    </Form.Control>
-                                </Form.Group>
-                            </Col>
-                            <Col sm={4} style={{ paddingRight: '0px' }} >
-                                <Form.Group >
-                                    <Form.Label>Quantity</Form.Label>
-                                    <Form.Control
-                                        type="number"
-                                        placeholder="Quantity"
-                                        onChange={this.quantityChangeHandler}
-                                        value={this.state.quantity}
-                                    />
-                                </Form.Group>
-                            </Col>
-                            <Col sm={4} style={{ marginTop: '30px', paddingRight: '0px' }} >
-                                <Button onClick={this.addSizeAndQuantity} style={{ width: '100%', backgroundColor: '#E7B2A5', borderColor: 'rgb(240, 130, 198)', borderWidth: '2px' }} variant="primary" >Add size and quantity</Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                    <Form.Label className="validMessage">{this.state.sizeAndQuantityErrMessage}</Form.Label>
-                    {this.state.sizeAndQuantity.length !== 0 ?
-                        <Table striped bordered hover size="sm">
-                            <thead>
-                                <tr>
-                                    <th>Size</th>
-                                    <th>Quantity</th>
-                                </tr>
-                            </thead>
-                            {this.state.sizeAndQuantity.map(item => {
-                                return (
-                                    <tbody>
-                                        <tr>
-                                            <td>{item.size}</td>
-                                            <td>{item.quantity}</td>
-                                        </tr>
-                                    </tbody>
-
-                                )
-                            })}
-                        </Table>
-                        : ''
-                    }
-
-                    <Button onClick={this.checkAllForm} className="newProductFormButton" variant="dark" type="submit">Create new card</Button>
-                </Form>
+                <AllForm
+                    state={this.state}
+                    quantityChangeHandler={this.quantityChangeHandler}
+                    sizeChangeHandler={this.sizeChangeHandler}
+                    typeChangeHandler={this.typeChangeHandler}
+                    addSizeAndQuantity={this.addSizeAndQuantity}
+                    checkAllForm={this.checkAllForm}
+                    changeHandler={this.changeHandler}
+                    onSubmit={(event) => { this.createProduct() }}
+                    addImage={this.addImage}
+                    imageChangeHandler={this.imageChangeHandler}
+                />
             </div>
         )
     }
-
 }
+
 export default CardMenuForm
