@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 
 function SelectInput(props) {
@@ -11,9 +10,9 @@ function SelectInput(props) {
                 onChange={props.onChange}
                 value={props.value}
     >
-    {props.data.map(option => {
+    {props.data.map((option,index ) => {
                     return (
-                        <option>{option.option}</option>
+                        <option key={index}>{option.option}</option>
                     )
                 })}
             </Form.Control>

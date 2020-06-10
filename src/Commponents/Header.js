@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
 import { FaShoppingCart } from "react-icons/fa";
 import Navbar from 'react-bootstrap/Navbar';
@@ -16,10 +15,9 @@ class Header extends Component {
         }
     }
     getData = async () => {
-        debugger
         const types = await getClothesTypes();
         this.setState({
-            types:types
+            types: types
         })
     }
     render() {
@@ -32,7 +30,7 @@ class Header extends Component {
             >
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto" inline>
+                    <Nav className="mr-auto" >
                         <Nav.Link
                             href="/"
                             className='linkItem'
@@ -44,10 +42,11 @@ class Header extends Component {
                             placement="bottom"
                             overlay={
                                 <Tooltip >
-                                    {this.state.types.map((type) => {
+                                    {this.state.types.map((type, index) => {
                                         const path = `/Catalog/${type.type}`
                                         return (
                                             <Nav.Link
+                                                key={index}
                                                 href={path}
                                                 style={{ color: 'white' }}>
                                                 {type.type}
@@ -80,7 +79,7 @@ class Header extends Component {
                                 Add card menu
                              </Nav.Link>
                             : ''}
-                    </Nav> <Nav inline>
+                    </Nav> <Nav >
                         <Nav.Link
                             href="/SchoppingBasket"
                             className='linkItem'

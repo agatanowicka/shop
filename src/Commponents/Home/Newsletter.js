@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -17,7 +16,8 @@ function Newsletter() {
                         <img
                             src='images/bag.jpg'
                             width='90%'
-                            className='bagImage'>
+                            className='bagImage'
+                            alt='newsletter'>
                         </img>
                     </Col>
                 </Row>

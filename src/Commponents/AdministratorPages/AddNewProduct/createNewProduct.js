@@ -1,7 +1,5 @@
 
-
 function createNewProduct( props) {
-    debugger
     return fetch('http://localhost:8080/colection/product', {
         method: 'POST',
         headers: {

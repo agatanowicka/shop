@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import sizeData from './sizeData';
-import Input from './Input';
+import Input from '../../Input';
 import SelectInput from './SelectInput';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 
 function SizeAndQuantity(props) {
-    debugger
     const [sizeAndQuantityErrMessage, setSizeAndQuantityErrMessage] = useState('');
     const [sizeAndQuantity, setSizeAndQuantity] = useState([]);
     const [size, setSize] = useState('');

@@ -1,10 +1,9 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 
 function Cards(props) {
     return (
-        <a href={"/product/" + props.productId} class="card-link">
+        <a href={"/product/" + props.productId} className="card-link">
             <Card style={{ width: '18rem' }} className="allCard">
                 <Card.Img className='imageInCollection' variant="top" src={props.image} />
                 <Card.Body >

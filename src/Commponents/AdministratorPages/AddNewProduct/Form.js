@@ -1,10 +1,9 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import SelectInput from './SelectInput';
 import Images from './Images';
 import Button from 'react-bootstrap/Button';
-import Input from './Input';
+import Input from '../../Input';
 import inputsData from './inputData';
 import SizeAndQuantity from './SizeAndQuantity';
 

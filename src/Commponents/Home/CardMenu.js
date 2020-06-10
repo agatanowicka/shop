@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card'
 import { Redirect } from 'react-router-dom';
 import Container from 'react-bootstrap/Container'
@@ -39,10 +38,10 @@ class CardMenu extends Component {
             <div>
                 <Container >
                     <Row >
-                        {this.state.cards.map(card => {
+                        {this.state.cards.map((card,index )=> {
                             return (
-                                <Col xs={12} s={12} md={6} lg={4}>
-                                    <a onClick={() => this.redirectPage(card.type)}>
+                                <Col xs={12} s={12} md={6} lg={4} key={index}>
+                                    <Card.Link onClick={() => this.redirectPage(card.type)}>
                                         <Card
                                             style={{ width: '300px' }}
                                             className='cardWithTypesClothes'
@@ -58,7 +57,7 @@ class CardMenu extends Component {
                                                     height='250px' />
                                             </Card.Body>
                                         </Card>
-                                    </a>
+                                    </Card.Link>
                                 </Col>)
                         })
                         }

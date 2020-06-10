@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteProductFromBusket } from '../../actions/productsInBasketActions';
 import { deleteAllProductFromBusket, getProductsInBasket } from '../../actions/productsInBasketActions';
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import { AiFillDelete } from "react-icons/ai";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import createNewOrder from './createNewOrder';
+import ProductsCards from './ProductsCards';
 
-const deleteProduct = (dispatch, index) => {
-  dispatch(deleteProductFromBusket(index))
-};
 const deleteAllProducts = (dispatch) => {
   dispatch(deleteAllProductFromBusket())
 };
+
 class SchoppingBasketPage extends Component {
   constructor(props) {
     super(props);
@@ -25,11 +22,6 @@ class SchoppingBasketPage extends Component {
       productsIdAndSize,
       message: ''
     }
-  }
-  handler = (event, index) => {
-    event.preventDefault();
-    deleteProduct(this.props.dispatch, index);
-    window.location.reload();
   }
   deleteAll = (event) => {
     event.preventDefault();
@@ -44,31 +36,16 @@ class SchoppingBasketPage extends Component {
     )
     return allIdAndSize;
   }
-  createNewOrder = (event) => {
+  createOrder = async (event) => {
     event.preventDefault();
-    const token = localStorage.getItem('token');
-    fetch('http://localhost:8080/order/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token
-      },
-      body: JSON.stringify({
-        products: this.state.productsIdAndSize
-      })
-    })
-      .then(res => {
-        if (res.status > 210) {
-          throw new Error('wrong status');
-        }
-        this.setState({ message: 'Your order has been sent!' });
-        this.deleteAll(event);
-        return res.json();
-      })
-      .catch(err => {
-        this.setState({ message: 'Creating a order failed!' });
-      });
-
+    const orderCreated = await createNewOrder(this.state.productsIdAndSize);
+    if (orderCreated) {
+      this.setState({ message: 'Your order has been sent!' });
+      this.deleteAll(event);
+    }
+    else {
+      this.setState({ message: 'Creating a order failed!' });
+    }
   }
   sumAllPrices = (products) => {
     let allPrice = 0;
@@ -77,35 +54,7 @@ class SchoppingBasketPage extends Component {
     })
     return allPrice;
   }
-  renderProducts = () => {
-    return (
-      this.props.productsInBasket.map((product, index) => {
-        return (
-          <Card key={index} className='cardsInBusket'>
-            <Container>
-              <Row>
-                <Col >
-                  <Card.Img variant="top" src={product.images} />
-                </Col>
-                <Col >
-                  <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>{product.size}</Card.Text>
-                    <Card.Text>{product.quantity}</Card.Text>
-                    <Card.Text>{product.price}</Card.Text>
-                    <Button
-                      variant="dark"
-                      onClick={(event) => this.handler(event, index)}
-                    >
-                      <AiFillDelete />
-                    </Button>
-                  </Card.Body>
-                </Col>
-              </Row>
-            </Container>
-          </Card >)
-      }))
-  }
+ 
   render() {
     return (
       <div>
@@ -113,7 +62,7 @@ class SchoppingBasketPage extends Component {
           <Container className='shoppingBusketContainer'>
             <Row>
               <Col sm={12} md={6} className='productsAndButtonCol'>
-                {this.renderProducts()}
+               <ProductsCards productsInBasket={this.props.productsInBasket} />
                 {this.state.productsIdAndSize.length > 0 ? <Button
                   variant="dark"
                   className='deleteAllProductsButton'
@@ -126,7 +75,7 @@ class SchoppingBasketPage extends Component {
                   <h4 className='toPayHeading'>To pay</h4>
                   <h4 className='toPayHeading'>{this.state.toPay}</h4>
                   {this.props.isAuth ?
-                    <Button className='toPayButton' variant="dark" onClick={this.createNewOrder.bind()}>
+                    <Button className='toPayButton' variant="dark" onClick={(event)=>this.createOrder(event)}>
                       Submit your order
             </Button>
                     : <Button className='toPayButton' variant="dark" href='http://localhost:3000/Login'>
@@ -135,8 +84,8 @@ class SchoppingBasketPage extends Component {
                   <h6 className='messageAboutSentOrder'>{this.state.message}</h6>
                 </div>  </Col>
             </Row>
-          </Container> :<Container fluid><Row><Col className='videoCol'> <video className='videoTag' autoPlay loop muted> <source src="/images/emptySchoppingCart2.mp4" type="video/mp4" /></video></Col>
-            </Row>
+          </Container> : <Container fluid><Row><Col className='videoCol'> <video className='videoTag' autoPlay loop muted> <source src="/images/emptySchoppingCart2.mp4" type="video/mp4" /></video></Col>
+          </Row>
           </Container>}
       </div>
     )

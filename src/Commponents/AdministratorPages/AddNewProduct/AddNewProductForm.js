@@ -39,7 +39,6 @@ class NewProductForm extends Component {
         };
     }
     createProduct = async (event) => {
-        debugger
         event.preventDefault();
         const isCreationSuccesfull = await createNewProduct(this.state);
         if (isCreationSuccesfull) {
@@ -88,7 +87,6 @@ class NewProductForm extends Component {
             };
             let formIsValid = true;
             for (const inputName in updatedForm) {
-                debugger
                 formIsValid = formIsValid && updatedForm[inputName].valid;
             }
             return {

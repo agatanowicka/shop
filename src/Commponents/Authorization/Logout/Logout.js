@@ -6,11 +6,8 @@ class Logout extends Component {
         super(props);
         localStorage.clear();
             this.props.history.push('/Login')
-            this.reload()
+            window.location.reload()
     };
-    reload(){
-      return  window.location.reload();
-    }
     render() {
         return (<Redirect to="/" />)
     }

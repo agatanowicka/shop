@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaShippingFast } from "react-icons/fa";
 import { FaCarSide } from "react-icons/fa";
 

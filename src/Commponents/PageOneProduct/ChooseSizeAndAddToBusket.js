@@ -1,11 +1,11 @@
-import React, { Component, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import { FaShoppingCart } from "react-icons/fa";
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import { updateProductsInBasket } from '../../actions/productsInBasketActions';
 import Dropdown from 'react-bootstrap/Dropdown'
+
 const addToBusket = (dispatch, props, size) => {
     dispatch(updateProductsInBasket(
         {
@@ -17,12 +17,13 @@ const addToBusket = (dispatch, props, size) => {
         }
     ))
 };
+
 class ChooseSizeAndAddToBusket extends Component {
     constructor(props) {
         super(props);
         this.state = {
             size: '',
-            chooseSize:'Choose size',
+            chooseSize: 'Choose size',
             message: ''
         }
         this.timer = null;
@@ -40,13 +41,13 @@ class ChooseSizeAndAddToBusket extends Component {
     resetMessage = () => {
         this.setState({
             message: '',
-            chooseSize:'Choose size'
+            chooseSize: 'Choose size'
         })
     }
     sizeChangeHandler = (event) => {
         this.setState({
             size: event.target.innerHTML,
-            chooseSize:event.target.innerHTML
+            chooseSize: event.target.innerHTML
         })
     }
     render() {
@@ -62,10 +63,10 @@ class ChooseSizeAndAddToBusket extends Component {
                             <h5 className='chooseSizeButton'>{this.state.chooseSize}</h5>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {this.props.sizes.map(size => {
+                            {this.props.sizes.map((size, index) => {
                                 return (
                                     <Dropdown.Item
-                                        onClick={this.sizeChangeHandler}>
+                                        onClick={this.sizeChangeHandler} key={index}>
                                         {size}
                                     </Dropdown.Item>
                                 )
