@@ -43,7 +43,7 @@ function AllForm(props) {
                 variant="dark"
                 type="submit"
             >
-                Create new card
+                Create new product
             </Button>
             <Form.Label>{props.state.messageFromBackend}</Form.Label>
         </Form>

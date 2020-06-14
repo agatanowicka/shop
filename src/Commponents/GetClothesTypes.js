@@ -11,5 +11,4 @@ export default async function getClothesTypes() {
             console.log(err);
             return [];
         }))
-
 }

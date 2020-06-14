@@ -13,7 +13,7 @@ function getCurrentDate() {
 
 function Footer() {
     return (
-        <div className="footer">
+        <footer className="footer">
             <div className="footerIcons">
                 <a href="https://www.facebook.com/">
                     <FaFacebookSquare
@@ -37,7 +37,7 @@ function Footer() {
                 </a>
             </div>
             <h4> <FaRegCopyright /> Copyright {getCurrentDate()} </h4>
-        </div>
+        </footer>
     )
 }
 export default Footer

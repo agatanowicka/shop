@@ -40,8 +40,8 @@ class Details extends Component {
                             <SizeTable  bodyData={table1BodyData} />
                             <Container fluid style={{ padding: '0px' }}>
                                 <Row>
-                                    <Col sm={3}><img src='/images/size.jpg' width='100%' height='90%' alt='Size'></img></Col>
-                                    <Col> 
+                                    <Col xs={3} sm={3}><img src='/images/size.jpg' width='100%' height='90%' alt='Size'></img></Col>
+                                    <Col xs={9} sm={9}> 
                                     <SizeTable bodyData={table2BodyData} />
                                     </Col>
                                 </Row>

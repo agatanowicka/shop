@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col';
 
 function Newsletter() {
     return (
-        <div className="newsletterContainer">
-            <Container fluid>
+        <div className="newsletterDiv">
+            <Container fluid className='newsletterContainer'>
                 <Row>
                     <Col md={5} className="newletterHeading">
                         <h3>Subscribe to the newsletter</h3>

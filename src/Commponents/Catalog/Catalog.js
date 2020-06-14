@@ -38,7 +38,7 @@ class Catalog extends Component {
     render() {
         return (
             <div>
-                <Container>
+                <Container className='catalogContainer'>
                     <Row >
                         {this.state.clothes.map(item => {
                             return (

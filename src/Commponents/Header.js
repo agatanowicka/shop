@@ -44,12 +44,13 @@ class Header extends Component {
                                 <Tooltip >
                                     {this.state.types.map((type, index) => {
                                         const path = `/Catalog/${type.type}`
+                                        const name=type.type.toUpperCase();
                                         return (
                                             <Nav.Link
                                                 key={index}
                                                 href={path}
                                                 style={{ color: 'white' }}>
-                                                {type.type}
+                                                {name}
                                             </Nav.Link>
                                         )
                                     })}

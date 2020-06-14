@@ -30,11 +30,11 @@ function ProductsCards(props) {
                                 <Card.Img variant="top" src={product.images} />
                             </Col>
                             <Col >
-                                <Card.Body>
+                                <Card.Body className='schoppingBasketCardBody'>
                                     <Card.Title>{product.name}</Card.Title>
-                                    <Card.Text>{product.size}</Card.Text>
-                                    <Card.Text>{product.quantity}</Card.Text>
-                                    <Card.Text>{product.price}</Card.Text>
+                                    <Card.Text>Size: {product.size}</Card.Text>
+                                    <Card.Text>Quantity:{product.quantity}</Card.Text>
+                                    <Card.Text>Price: {product.price}</Card.Text>
                                     <Button
                                         variant="dark"
                                         onClick={(event) => deleteOneProduct(event, index)}

@@ -24,7 +24,9 @@ class App extends Component {
           isAuth={this.state.isAuth}
           isAministrator={this.state.isAministrator}
         />
+        <div className='pageContent'>
         {allRoutes(this.state)}
+        </div>
         <Footer />
       </Fragment>
     );

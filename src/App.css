@@ -1,341 +1,571 @@
-.productImage{
-height: 600px;
-margin-right: 5%;
-}
-.price{
-    color:black;
-}
-.shoppingCartButton{
+body {
+    background-color: white;
+  }
+  
+  .tooltip-inner {
+    background-color: rgb(59, 49, 59);
+  }
+  
+  .bs-tooltip-auto[x-placement^=bottom] .arrow::before, .bs-tooltip-bottom .arrow::before {
+    border-bottom-color: rgb(59, 49, 59);
+  }
+  
+  .productImage {
+    height: 600px;
+    margin-right: 5%;
+  }
+  
+  .price {
+    color: black;
+  }
+  
+  .shoppingCartButton {
     width: 100%;
     margin-bottom: 5%;
-}
-.dropdown-toggle.btn.btn-outline-dark{
+  }
+  
+  .dropdown-toggle.btn.btn-outline-dark {
     width: 100%;
     margin-top: 5%;
-text-align: left;    
-margin-bottom: 5%;
-}
-.buttonHeading{
+    text-align: left;
+    margin-bottom: 5%;
+  }
+  
+  .buttonHeading {
     float: left;
-}
-.basicInfo{
+  }
+  
+  .basicInfo {
     margin: auto;
-}
-.fotoDiv{
+  }
+  
+  .catalogContainer {
+    margin-bottom: 100px;
+  }
+  
+  .fotoDiv {
     background-image: url(https://www.fabloktex.com/wp-content/uploads/2018/06/fablok_fabric.jpg);
     height: 600px;
     text-align: center;
-    
-}
-.fotoHeading{
-  padding-top: 40%;
-  color: rgb(255, 255, 255);
-  font-weight: bolder;
-  font-size: 5rem;
-  text-shadow: rgb(70, 68, 68) 3px 3px;
-}
-.detailsContainer{
+  }
+  
+  .fotoHeading {
+    padding-top: 40%;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    font-size: 5rem;
+    text-shadow: rgb(70, 68, 68) 3px 3px;
+  }
+  
+  .detailsContainer {
     margin-top: 3%;
     margin-bottom: 5%;
-}
-.header{
+  }
+  
+  .header {
     background-color: #E7B2A5;
-}
-
-a.linkItem.nav-link{
+  }
+  
+  a.linkItem.nav-link {
     font-size: 1.5rem;
     font-weight: bolder;
     padding-right: 10px;
-}
-a.nav-link:hover{
-    color:rgb(51, 50, 50);
-}
-.imageAndBasicInfo{
-    margin-top:3%;
-}
-.footer{
+  }
+  
+  a.nav-link:hover {
+    color: rgb(51, 50, 50);
+  }
+  
+  .imageAndBasicInfo {
+    margin-top: 3%;
+  }
+  
+  .footer {
     background-color: rgb(51, 50, 50);
     height: 250px;
+    padding-bottom: 30px;
     text-align: center;
     color: white;
-}
-
-.footerIcons{
+    height: auto;
+    position: relative;
+    ;
+  left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .footerIcons {
     text-align: center;
-}
-.footerIcon{
-    margin:100px 20px 30px;
+  }
+  
+  .footerIcon {
+    margin: 100px 20px 30px;
     color: white;
-
-}
-.footerIcon:hover{
+  }
+  
+  .footerIcon:hover {
     color: #E7B2A5;
-}
-.cardTitle{
+  }
+  
+  .cardTitle {
     height: 50px;
-    color:black;
-}
-.cardPrice{
-    color:black;
-}
-.allCard{
+    color: black;
+  }
+  
+  .cardPrice {
+    color: black;
+  }
+  
+  .allCard {
     margin-top: 5%;
-    margin-bottom:5%;
+    margin-bottom: 5%;
     margin-left: auto;
     margin-right: auto;
-    
-}
-.topContainerBackground{
-        background: url(https://polki.pl/foto/4_3_LARGE/trendy-wiosna-lato-2020-10-hitow-sezonu-2449281.jpg) no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        height:500px;
-        position: relative;
-        z-index: 0;
-        background-position:top;
-}
-.topContainerBackground::before{
-        position: absolute;
-        content: '';
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.24);
-        z-index: -1;
-        left: 0;
-        top: 0;
-}
-.topContainerHeading{
+  }
+  
+  .topContainerBackground {
+    background: url(https://polki.pl/foto/4_3_LARGE/trendy-wiosna-lato-2020-10-hitow-sezonu-2449281.jpg) no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 500px;
+    position: relative;
+    z-index: 0;
+    background-position: top;
+    margin-top: -100px;
+  }
+  
+  .topContainerBackground::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.24);
+    z-index: -1;
+    left: 0;
+    top: 0;
+  }
+  
+  .topContainerHeading {
     color: white;
-    font-size: 8rem;
     text-align: center;
     text-shadow: #E7B2A5 3px 3px;
     padding-top: 300px;
-}
-.allMenuCards{
-    margin:1%;   
-}
-.cardHomeTitle{
-    color: rgb(51, 50, 50);
+  }
+  
+  .allMenuCards {
+    margin: 1%;
+  }
+  .cardMenuButtons{
+    text-align: center;
+    padding-top:20px;
+    padding-bottom: 20px;
+  }
+  .cardHomeTitle {
+    color: rgb(59, 49, 59);
     font-size: 10rem;
     text-align: center;
-    margin-top: 5% ;
-}
-.saleContainer{
-    height: 500px;
-    padding-top:50px;
-}
-.newsletterContainer{
+    margin-top: 5%;
+  }
+  
+  .saleContainer {
+    height: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: rgb(59, 49, 59);
+    text-align: center;
+  }
+  
+  .saleImage {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cardMenuDiv {
+    background-color: white;
+    width: 100%;
+  }
+  
+  .newsletterDiv {
     background-color: rgb(223, 223, 223);
-    width: 80%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
     margin-right: auto;
     margin-left: auto;
     padding-bottom: 50px;
     text-align: center;
-}
-.bagImage{
-    margin-top:50px;
+  }
+  
+  .bagImage {
+    margin-top: 50px;
     margin-bottom: auto;
-    height:300px;
-}
-.newletterHeading{
+    height: 350px;
+  }
+  
+  .newletterHeading {
     padding-top: 150px;
     padding-bottom: auto;
-}
-
-@media (max-width:800px) {
-    .topContainerHeading {
-      font-size: 5rem;
-    }
-   
-}
-.cardWithTypesClothes{
+    color: rgb(59, 49, 59);
+  }
+  
+  .cardWithTypesClothes {
     margin-top: 5%;
     margin-bottom: 5%;
     margin-left: auto;
     margin-right: auto;
     background-size: cover;
-}
-.loginForm{
+  }
+  
+  .loginForm {
     margin: 5% auto 2% auto;
-}
-.loginButton{
+  }
+  
+  .loginButton {
     width: 100%;
-}
-.createAnAccountButton{
-   width: 100%;
-}
-.loginPage{
+  }
+  
+  .createAnAccountButton {
+    width: 100%;
+  }
+  
+  .loginPage {
     margin: 5% auto 5% auto;
     width: 60%;
-}
-.signupPage{
+  }
+  
+  .signupPage {
     margin: 5% auto 5% auto;
     width: 60%;
-}
-.signupButton{
+  }
+  
+  .signupButton {
     width: 100%;
-}
-.validMessage{
+  }
+  
+  .validMessage {
     color: red;
     font-size: small;
-}.cardMenuForm{
+  }
+  
+  .cardMenuForm {
     margin: 5% auto 5% auto;
     width: 60%;
-}
-.cardMenuFormButton{
+  }
+  
+  .cardMenuFormButton {
     width: 100%;
-}
-.newProductForm{
+  }
+  
+  .newProductForm {
     margin: 5% auto 5% auto;
     width: 60%;
-}
-.newProductFormButton{
+  }
+  
+  .newProductFormButton {
     width: 100%;
-}
-.cardsInBusket{
-    margin-bottom:5%;
+  }
+  
+  .cardsInBusket {
+    margin-bottom: 5%;
     text-align: center;
-    margin-left:auto;
+    margin-left: auto;
     margin-right: auto;
     width: 90%;
-}
-.shoppingBusketContainer{
-    margin-top:5% ;
-    margin-right:auto;
-    margin-left:auto ;
-    margin-bottom:5%;
+  }
+  
+  .shoppingBusketContainer {
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5%;
     text-align: center;
-}
-.deleteAllProductsButton{
-    margin-top:5%
-}
-.toPayCol{
+  }
+  
+  .deleteAllProductsButton {
+    margin-top: 5%;
+  }
+  
+  .toPayCol {
     height: 100%;
     border-color: rgba(231, 178, 165);
     border-style: solid;
     border-width: 2px;
     width: 100%;
-}
-.toPayButton{
-    margin-top:5%;
-}
-.toPayHeading{
+  }
+  
+  .toPayButton {
+    margin-top: 5%;
+  }
+  
+  .toPayHeading {
     font-size: 2rem;
     font-weight: bolder;
-    margin-top:5%;
-}
-.toPayDiv{
-    margin-top:auto;
-    margin-bottom:auto;
-}
-.productsAndButtonCol{
+    margin-top: 5%;
+  }
+  
+  .toPayDiv {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  .productsAndButtonCol {
     text-align: center;
-}
-.messageAboutSentOrder{
-    margin-top:50px;
-}
-.imageInCollection{
+  }
+  
+  .messageAboutSentOrder {
+    margin-top: 50px;
+  }
+  
+  .imageInCollection {
     height: 350px;
     width: 100%;
-}
-.chooseSizeButton{
-    float:left;
-    color:rgb(51, 50, 50);
-}
-.dropdown-toggle::after{
+  }
+  
+  .chooseSizeButton {
+    float: left;
+    color: rgb(51, 50, 50);
+  }
+  
+  .dropdown-toggle::after {
     float: right;
-    margin-top:2.5%;
-}
-.carousel-control-next{
-    width:50px;
+    margin-top: 2.5%;
+  }
+  
+  .carousel-control-next {
+    width: 50px;
     height: 50px;
-    background-color:rgb(51, 50, 50) ;
+    background-color: rgb(51, 50, 50);
     margin-bottom: auto;
     margin-top: auto;
-}
-.carousel-control-prev{
-    width:50px;
+  }
+  
+  .carousel-control-prev {
+    width: 50px;
     height: 50px;
-    background-color:rgb(51, 50, 50) ;
+    background-color: rgb(51, 50, 50);
     margin-bottom: auto;
     margin-top: auto;
-}
-.divWithSizeAndDetails{
-height: 100%;
-}
-.tabsContent{
+  }
+  
+  .divWithSizeAndDetails {
+    height: 100%;
+  }
+  
+  .tabsContent {
     border: solid;
     border-top: hidden;
     border-color: #E7B2A5;
     border-width: 1px;
     height: 560px;
-    
-}
-.detailsItemHeading{
+  }
+  
+  .detailsItemHeading {
     font-weight: bold;
-    color:rgb(51, 50, 50);
+    color: rgb(51, 50, 50);
     font-size: 1.2rem;
     padding-left: 40px;
     display: inline;
-}
-.detailsItemText{
+  }
+  
+  .detailsItemText {
     padding-left: 10px;
     display: inline;
-}
-.detailsItem{
+  }
+  
+  .detailsItem {
     padding-top: 30px;
     padding-bottom: 30px;
-}
-.addToShoppingCartInfo{
-    color:rgb(207, 124, 104);
+  }
+  
+  .addToShoppingCartInfo {
+    color: rgb(207, 124, 104);
     font-weight: bold;
-}
-#noanim-tab-example-tab-details.nav-item.nav-link.active{
+  }
+  
+  #noanim-tab-example-tab-details.nav-item.nav-link.active {
     background-color: #E7B2A5;
-    color:black;
-}
-#noanim-tab-example-tab-details{
+    color: black;
+  }
+  
+  #noanim-tab-example-tab-details {
     border-color: #E7B2A5;
     border-width: 1px;
     border-style: solid;
     color: black;
     background-color: rgba(231, 178, 165, 0.363);
-}
-#noanim-tab-example-tab-size.nav-item.nav-link.active{
+  }
+  
+  #noanim-tab-example-tab-size.nav-item.nav-link.active {
     background-color: #E7B2A5;
-    color:black;
-}
-#noanim-tab-example-tab-size{
+    color: black;
+  }
+  
+  #noanim-tab-example-tab-size {
     border-color: #E7B2A5;
     border-width: 1px;
     border-style: solid;
     color: black;
     background-color: rgba(231, 178, 165, 0.192);
-}
-.tabsWithSizeAndDetails.nav-tabs{
-    border-bottom:#E7B2A5;
+  }
+  
+  .tabsWithSizeAndDetails.nav-tabs {
+    border-bottom: #E7B2A5;
     border-width: 1px;
     border-style: solid;
     border-top: hidden;
     border-left: hidden;
     border-right: hidden;
-}
-#tableTr {
+  }
+  
+  #tableTr {
     background-color: rgba(231, 178, 165, 0.192);
-}
-#table_tr:hover{
+  }
+  
+  #table_tr:hover {
     background-color: #E7B2A5;
-}
-.emptySchoppingCardrHeading{
+  }
+  
+  .schoppingBasketCardBody {
+    margin-top: 50px;
+    margin-bottom: auto;
+  }
+  
+  .emptySchoppingCardrHeading {
     padding-top: 15%;
     margin-bottom: auto;
-}
-.videoTag{
-    margin-top:50px;
+  }
+  
+  .videoTag {
+    margin-top: 50px;
     margin-bottom: 50px;
-}
-.videoCol{
+    width: 100%;
+  }
+  
+  .videoCol {
     text-align: center;
-}
+  }
+  
+  .pageContent {
+    margin-top: 100px;
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media (min-width: 1801px) {
+    .topContainerBackground {
+      height: 800px;
+    }
+  
+    .pageContent {
+      width: 65%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .topContainerHeading {
+      font-size: 10rem;
+    }
+  
+    .saleImage {
+      height: 450px;
+      width: 60%;
+    }
+  
+    .newsletterContainer {
+      width: 80%;
+    }
+  
+    .videoTag {
+      width: 50%;
+    }
+  }
+  
+  @media (min-width: 1281px)and (max-width: 1800px) {
+    .topContainerBackground {
+      height: 650px;
+    }
+  
+    .pageContent {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .topContainerHeading {
+      font-size: 9rem;
+    }
+  
+    .saleImage {
+      height: 450px;
+      width: 70%;
+    }
+  
+    .newsletterContainer {
+      width: 80%;
+    }
+  
+    .videoTag {
+      width: 60%;
+    }
+  }
+  
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    .topContainerHeading {
+      font-size: 8rem;
+    }
+  
+    .topContainerBackground {
+      height: 600px;
+    }
+  
+    .saleImage {
+      height: 450px;
+      width: 80%;
+    }
+  
+    .videoTag {
+      width: 70%;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .topContainerHeading {
+      font-size: 6rem;
+    }
+  
+    .saleImage {
+      height: 400px;
+      width: 90%;
+    }
+  
+    .videoTag {
+      width: 80%;
+    }
+  }
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+    .topContainerHeading {
+      font-size: 5rem;
+    }
+  
+    .saleImage {
+      height: 300px;
+      width: 90%;
+    }
+  
+    .videoTag {
+      width: 90%;
+    }
+  }
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    .topContainerHeading {
+      font-size: 2rem;
+    }
+  
+    .saleImage {
+      height: 300px;
+      width: 100%;
+    }
+  }
