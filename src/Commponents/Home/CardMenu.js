@@ -5,14 +5,21 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
 import getClothesTypes from '../getClothesTypes';
+import Button from 'react-bootstrap/Button';
+import { AiFillDelete } from "react-icons/ai";
+import deleteCardMenu from './deleteCardMenu';
 
 class CardMenu extends Component {
     constructor(props) {
         super(props);
         this.getData();
+        const isAuth = localStorage.getItem('isAuth');
+        const isAministrator = localStorage.getItem('isAdministrator')
         this.state = {
             cards: [],
-            redirect: false
+            redirect: false,
+            isAuth,
+            isAministrator
         }
     }
 
@@ -21,6 +28,19 @@ class CardMenu extends Component {
         this.setState({
             cards: cards
         })
+    }
+    deleteCard = async (e, cardId) => {
+        e.preventDefault();
+        const isSuccessfull = await deleteCardMenu(cardId);
+        if (isSuccessfull) {
+            this.setState({
+                cards: this.state.cards.filter((card) => card._id != cardId)
+            })
+
+        }
+        else {
+            alert('something is wrong');
+        }
     }
 
     redirectPage = (type) => {
@@ -35,17 +55,17 @@ class CardMenu extends Component {
             }} />
         }
         return (
-            <div>
+            <div className='cardMenuDiv'>
                 <Container >
                     <Row >
-                        {this.state.cards.map((card,index )=> {
+                        {this.state.cards.map((card, index) => {
                             return (
-                                <Col xs={12} s={12} md={6} lg={4} key={index}>
-                                    <Card.Link onClick={() => this.redirectPage(card.type)}>
-                                        <Card
-                                            style={{ width: '300px' }}
-                                            className='cardWithTypesClothes'
-                                        >
+                                <Col xs={12} s={12} md={6} lg={4} xl={3} key={index}>
+                                    <Card
+                                        style={{ width: '100%' }}
+                                        className='cardWithTypesClothes'
+                                    >
+                                        <Card.Link onClick={() => this.redirectPage(card.type)}>
                                             <Card.Body >
                                                 <Card.Title
                                                     className="cardHomeTitle">
@@ -54,10 +74,13 @@ class CardMenu extends Component {
                                                 <Card.Img
                                                     variant="bottom"
                                                     src={card.image}
-                                                    height='250px' />
+                                                    height='200px' />
                                             </Card.Body>
-                                        </Card>
-                                    </Card.Link>
+                                        </Card.Link>
+                                        {this.state.isAuth && this.state.isAministrator ?
+                                            <div className='cardMenuButtons'><Button variant="dark">Edit</Button> <Button variant="dark" onClick={(e) => this.deleteCard(e, card._id)}><AiFillDelete /></Button></div>
+                                            : ''}
+                                    </Card>
                                 </Col>)
                         })
                         }
