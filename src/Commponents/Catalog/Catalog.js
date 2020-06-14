@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from "./Card";
+import deleteCard from './deleteCard';
 
 class Catalog extends Component {
     constructor(props) {
@@ -12,6 +13,19 @@ class Catalog extends Component {
             clothes:[]
         }
 
+    }
+    deleteProductCard = async (e, cardId) => {
+        e.preventDefault();
+        const isSuccessfull = await deleteCard(cardId);
+        if (isSuccessfull) {
+            this.setState({
+                clothes: this.state.clothes.filter((card) => card._id != cardId)
+            })
+
+        }
+        else {
+            alert('Something is wrong!');
+        }
     }
     getAllProducts() {
         let type = this.props.match.params.type;
@@ -48,6 +62,7 @@ class Catalog extends Component {
                                         image={item.images}
                                         price={item.price}
                                         productId={item._id}
+                                        deleteCard={(e)=>this.deleteProductCard(e, item._id)}
                                     />
                                 </Col>
                             )
