@@ -1,6 +1,6 @@
-
-function createNewProduct( props) {
-    return fetch('http://localhost:8080/collection/product', {
+export default function editCard(props) {
+    let productId = props.productId;
+    return (fetch(`http://localhost:8080/collection/edit/${productId}`,  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -21,17 +21,12 @@ function createNewProduct( props) {
         })
     })
         .then(res => {
-            if (res.status === 422) {
-                console.log("Validation failed. Make sure the email address isn't used yet!");
-            }
-            if (res.status !== 200 && res.status !== 201) {
-                console.log('Creating a product failed!');
+            if (res.status !== 200) {
+                return alert('Failed to fetch status')
             }
             return true;
         })
         .catch(err => {
-            console.log(err);
             return false;
-        });
+        }))
 }
-export default createNewProduct

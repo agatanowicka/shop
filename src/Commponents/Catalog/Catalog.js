@@ -4,13 +4,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from "./Card";
 import deleteCard from './deleteCard';
+import { Redirect } from 'react-router-dom';
 
 class Catalog extends Component {
     constructor(props) {
         super(props);
         this.getAllProducts();
         this.state = {
-            clothes:[]
+            clothes:[],
+            redirect:false,
+            product:{}
         }
 
     }
@@ -19,7 +22,7 @@ class Catalog extends Component {
         const isSuccessfull = await deleteCard(cardId);
         if (isSuccessfull) {
             this.setState({
-                clothes: this.state.clothes.filter((card) => card._id != cardId)
+                clothes: this.state.clothes.filter((card) => card._id !== cardId)
             })
 
         }
@@ -27,13 +30,20 @@ class Catalog extends Component {
             alert('Something is wrong!');
         }
     }
+    editProductCard=(e, item)=>{
+        e.preventDefault();
+        this.setState({
+            redirect:true,
+            product:item
+        })
+    }
     getAllProducts() {
         let type = this.props.match.params.type;
         let path = '';
         if (type) {
             path = `type=${type}`;
         }
-        fetch(`http://localhost:8080/colection/product?${path}`, { method: 'GET' })
+        fetch(`http://localhost:8080/collection/product?${path}`, { method: 'GET' })
             .then(res => {
                 if (res.status !== 200) {
                     return alert('Failed to fetch status')
@@ -50,6 +60,11 @@ class Catalog extends Component {
             })
     }
     render() {
+        if(this.state.redirect){return <Redirect to={{
+            pathname: "/EditProductForm",
+            state: { product:this.state.product }
+        }}/>}
+        
         return (
             <div>
                 <Container className='catalogContainer'>
@@ -58,11 +73,13 @@ class Catalog extends Component {
                             return (
                                 <Col s={6} md={6} lg={4} key={item._id}>
                                     <Card
+                                        item = {item}
                                         name={item.name}
-                                        image={item.images}
+                                        image={item.images[0]}
                                         price={item.price}
                                         productId={item._id}
                                         deleteCard={(e)=>this.deleteProductCard(e, item._id)}
+                                        editCard={(e)=>this.editProductCard(e, item)}
                                     />
                                 </Col>
                             )

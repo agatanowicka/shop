@@ -1,54 +1,60 @@
 import React, { Component } from 'react';
-import { required } from '../../validation/validators';
+import { required } from '../validation/validators';
 import { Redirect } from 'react-router-dom';
-import createNewProduct from './createNewProduct';
-import getClothesTypes from '../../getClothesTypes';
-import ProductForm from '../../ProductForm/ProductForm';
+import getClothesTypes from '../getClothesTypes';
+import ProductForm from '../ProductForm/ProductForm';
+import editProduct from './editProduct';
 
-class NewProductForm extends Component {
-
+const initFormInputState = {
+    value: '',
+    valid: true,
+    validators: [required],
+    validationMessage: ""
+};
+class EditProductForm extends Component {
     constructor(props) {
-        const initFormInputState = {
-            value: '',
-            valid: false,
-            validators: [required],
-            validationMessage: ""
-        };
         super(props);
-        this.getData();
+        let product;
+        if (this.props.location.state) {
+            product = this.props.location.state.product
+            this.getData();
+        }
         const token = localStorage.getItem('token');
         this.state = {
-            newProductForm: {
-                name: { ...initFormInputState },
-                color: { ...initFormInputState },
-                price: { ...initFormInputState },
-                fabric: { ...initFormInputState },
-                typeOfMaterial: { ...initFormInputState },
-                careTips: { ...initFormInputState },
-                details: { ...initFormInputState },
-                productNumber: { ...initFormInputState }
-            },
-            formIsValid: false,
+            formIsValid: true,
             redirect: false,
-            type: '',
             types: [],
-            sizeAndQuantity: [],
-            images: [],
             messageFromBackend: '',
-            token: token,
+            token: token
         };
+        if (product) {
+            this.state.newProductForm = {
+                name: { ...initFormInputState, value: product.name },
+                color: { ...initFormInputState, value: product.color },
+                price: { ...initFormInputState, value: product.price },
+                fabric: { ...initFormInputState, value: product.fabric },
+                typeOfMaterial: { ...initFormInputState, value: product.typeOfMaterial },
+                careTips: { ...initFormInputState, value: product.careTips },
+                details: { ...initFormInputState, value: product.details },
+                productNumber: { ...initFormInputState, value: product.productNumber }
+            }
+            this.state.productId = product._id;
+            this.state.type = product.type;
+            this.state.images = product.images;
+            this.state.sizeAndQuantity = product.sizeAndQuantity;
+        }
     }
-    createProduct = async (event) => {
+
+    updateProduct = async (event) => {
         event.preventDefault();
-        const isCreationSuccesfull = await createNewProduct(this.state);
-        if (isCreationSuccesfull) {
+        const updatedProduct = await editProduct(this.state);
+        if (updatedProduct) {
             this.setState({
-                messageFromBackend: 'Product is created!',
                 redirect: true
             })
         } else {
             this.setState({
-                messageFromBackend: 'The product has not been created!',
+                messageFromBackend: "Product can't be update!"
             })
         }
     }
@@ -112,7 +118,7 @@ class NewProductForm extends Component {
     }
     imagesChangeState = (images) => {
         this.setState({
-            images
+            images:images
         })
     }
     sizeAndQuantitChangeState = (sizeAndQuantity) => {
@@ -133,13 +139,12 @@ class NewProductForm extends Component {
                     addSizeAndQuantityCallback={this.sizeAndQuantitChangeState}
                     checkAllForm={this.checkAllForm}
                     changeHandler={this.changeHandler}
-                    onSubmit={(event) => this.createProduct(event)}
-                    addImage={this.addImage}
-                    btnTitle={' Create new product'}
+                    onSubmit={this.updateProduct}
+                    btnTitle={'Update product'}
                 />
             </div>
         )
     }
 }
 
-export default NewProductForm
+export default EditProductForm

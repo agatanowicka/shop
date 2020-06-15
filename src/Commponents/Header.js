@@ -60,7 +60,7 @@ class Header extends Component {
                             <Nav.Link
                                 className='linkItem'
                                 style={{ color: "white" }}>
-                                Colection
+                                Collection
                                   </Nav.Link>
                         </OverlayTrigger>
 

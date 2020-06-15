@@ -9,6 +9,8 @@ import CardMenuForm from "./Commponents/AdministratorPages/AddCardMenu/CardMenuF
 import AddNewProductForm from './Commponents/AdministratorPages/AddNewProduct/AddNewProductForm';
 import SchoppingBasketPage from './Commponents/SchoppingBasket/SchoppingBasketPage';
 import Logout from './Commponents/Authorization/Logout/Logout';
+import EditProductForm from './Commponents/Catalog/EditProductForm';
+
 
 function allRoutes(props) {
 
@@ -193,6 +195,15 @@ function allRoutes(props) {
                     path="/AddNewProductForm"
                     render={props => (
                         <AddNewProductForm
+                            {...props}
+                            token={props.token}
+                        />
+                    )}
+                />
+                <Route
+                    path="/EditProductForm"
+                    render={props => (
+                        <EditProductForm
                             {...props}
                             token={props.token}
                         />

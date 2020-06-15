@@ -18,7 +18,7 @@ function Cards(props) {
                 </Card.Body>
             </Card.Link>
             {isAuth && isAministrator ?
-                <div className='cardMenuButtons'><Button variant="dark" >Edit</Button> <Button variant="dark" onClick={(e)=>props.deleteCard(e)}><AiFillDelete /></Button></div>
+                <div className='cardMenuButtons'><Button variant="dark"onClick={(e)=>props.editCard(e)} >Edit</Button> <Button variant="dark" onClick={(e)=>props.deleteCard(e)}><AiFillDelete /></Button></div>
                 : ''}
         </Card>
 

@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
+import { AiFillDelete } from "react-icons/ai";
 
 function Images(props) {
-    const[image, setImage]=useState('');
-    const [images, setImages]= useState([]);
-   
+    const [image, setImage] = useState('');
+    const [images, setImages] = useState([]);
+    useEffect(() => {
+        setImages(props.images);
+    }, [props.images])
+
     function addImage() {
         if (image !== '') {
             images.push(image);
@@ -18,12 +22,19 @@ function Images(props) {
             props.imagesChangeCallback(images);
         }
     }
+    function deleteImage( e,item) {
+        e.preventDefault();
+        const filteredImages = images.filter((img) => img !== item)
+        setImages(filteredImages);
+        props.imagesChangeCallback(filteredImages);
+    }
     return (
         <Form.Group>
             <Container>
                 <Row>
-                    {images.map(item => {
-                        return (<Col md={1}>
+                    {images.map((item, index) => {
+                        return (<Col md={1} key={index}>
+                            <Button variant="dark" className='deleteImageBtn' onClick={(e) => deleteImage(e,item)}><AiFillDelete /></Button>
                             <Image src={item} rounded style={{ width: '50px', height: '60px' }} />
                         </Col>)
                     })}
@@ -36,13 +47,13 @@ function Images(props) {
                         <Form.Control
                             type="text"
                             placeholder="Image"
-                            onChange={(event)=>setImage(event.target.value)}
+                            onChange={(event) => setImage(event.target.value)}
                             value={image}
                             style={{ width: '100%' }}
                         />
                     </Col>
                     <Col sm={4} style={{ paddingRight: '0px' }} >
-                        <Button onClick={()=>addImage()}
+                        <Button onClick={() => addImage()}
                             style={{ width: '100%', backgroundColor: '#E7B2A5', borderColor: 'rgb(240, 130, 198)', borderWidth: '2px' }}
                             variant="primary" >
                             Add image

@@ -8,7 +8,6 @@ export default function deleteCardMenu( id) {
             return true
         })
         .catch(err => {
-            console.log(err);
             return false
         }))
 }

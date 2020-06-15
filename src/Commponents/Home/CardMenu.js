@@ -8,6 +8,7 @@ import getClothesTypes from '../getClothesTypes';
 import Button from 'react-bootstrap/Button';
 import { AiFillDelete } from "react-icons/ai";
 import deleteCardMenu from './deleteCardMenu';
+import editCardMenu from './editCardMenu';
 
 class CardMenu extends Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class CardMenu extends Component {
 
         }
         else {
-            alert('something is wrong');
+            alert('Something is wrong!');
         }
     }
 
@@ -78,7 +79,7 @@ class CardMenu extends Component {
                                             </Card.Body>
                                         </Card.Link>
                                         {this.state.isAuth && this.state.isAministrator ?
-                                            <div className='cardMenuButtons'><Button variant="dark">Edit</Button> <Button variant="dark" onClick={(e) => this.deleteCard(e, card._id)}><AiFillDelete /></Button></div>
+                                            <div className='cardMenuButtons'><Button variant="dark" onClick={(e)=>editCardMenu(e, card._id)}>Edit</Button> <Button variant="dark" onClick={(e) => this.deleteCard(e, card._id)}><AiFillDelete /></Button></div>
                                             : ''}
                                     </Card>
                                 </Col>)

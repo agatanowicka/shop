@@ -246,7 +246,16 @@ body {
     color: red;
     font-size: small;
   }
-  
+  .deleteImageBtn{
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  .deleteTableBtn{
+border-radius: 50%;
+  }
+  .sizeAndQuantityTable{
+    text-align: center;
+  }
   .cardMenuForm {
     margin: 5% auto 5% auto;
     width: 60%;

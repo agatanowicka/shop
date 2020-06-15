@@ -3,15 +3,16 @@ import Form from 'react-bootstrap/Form';
 import SelectInput from './SelectInput';
 import Images from './Images';
 import Button from 'react-bootstrap/Button';
-import Input from '../../Input';
+import Input from '../Input';
 import inputsData from './inputData';
 import SizeAndQuantity from './SizeAndQuantity';
 
-function AllForm(props) {
+function ProductForm(props) {
     return (
         <Form className='newProductForm' onSubmit={props.onSubmit} >
             <Images
                 imagesChangeCallback={props.imagesChangeCallback}
+                images={props.state.images}
             />
             <SelectInput
                 label={'Type'}
@@ -36,6 +37,7 @@ function AllForm(props) {
             })}
             <SizeAndQuantity
                 updateCallback={props.addSizeAndQuantityCallback}
+                sizeAndQuantity={props.state.sizeAndQuantity}
             />
             <Button
                 onClick={props.checkAllForm}
@@ -43,10 +45,10 @@ function AllForm(props) {
                 variant="dark"
                 type="submit"
             >
-                Create new product
+               {props.btnTitle}
             </Button>
             <Form.Label>{props.state.messageFromBackend}</Form.Label>
         </Form>
     )
 }
-export default AllForm
+export default ProductForm

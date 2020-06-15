@@ -4,14 +4,16 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import sizeData from './sizeData';
-import Input from '../../Input';
+import Input from '../Input';
 import SelectInput from './SelectInput';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
+import { AiFillDelete } from "react-icons/ai";
+import deleteCard from '../Catalog/deleteCard';
 
 function SizeAndQuantity(props) {
     const [sizeAndQuantityErrMessage, setSizeAndQuantityErrMessage] = useState('');
-    const [sizeAndQuantity, setSizeAndQuantity] = useState([]);
+    const [sizeAndQuantity, setSizeAndQuantity] = useState(props.sizeAndQuantity);
     const [size, setSize] = useState('');
     const [quantity, setQuantity] = useState('');
 
@@ -34,6 +36,14 @@ function SizeAndQuantity(props) {
         } else {
             setSizeAndQuantityErrMessage('Size and quantty must be filled out');
         }
+    }
+    function deleteSizeAndQuantity( e,index) {
+        e.preventDefault();
+        sizeAndQuantity.splice(index,1)
+        setSizeAndQuantity(sizeAndQuantity);
+        const mappedSizeAndQuantity= sizeAndQuantity.map(item=>{return {size:item.size, quantity:item.quantity}})
+        setSizeAndQuantity(mappedSizeAndQuantity);
+        props.updateCallback(mappedSizeAndQuantity);;
     }
 
     return (
@@ -71,19 +81,21 @@ function SizeAndQuantity(props) {
             </Container>
             <Form.Label className="validMessage">{sizeAndQuantityErrMessage}</Form.Label>
             {sizeAndQuantity.length !== 0 ?
-                <Table striped bordered hover size="sm">
+                <Table striped bordered hover size="sm" className='sizeAndQuantityTable'>
                     <thead>
                         <tr>
                             <th>Size</th>
                             <th>Quantity</th>
+                            <th></th>
                         </tr>
                     </thead>
-                    {sizeAndQuantity.map(item => {
+                    {sizeAndQuantity.map((item, index )=> {
                         return (
-                            <tbody>
+                            <tbody key={index}>
                                 <tr>
                                     <td>{item.size}</td>
                                     <td>{item.quantity}</td>
+                                    <td> <Button variant="dark" className='deleteTableBtn' onClick={(e) => deleteSizeAndQuantity(e,index)}><AiFillDelete /></Button></td>
                                 </tr>
                             </tbody>
 
@@ -92,6 +104,7 @@ function SizeAndQuantity(props) {
                 </Table>
                 : ''
             }
+            
         </div>
     )
 }

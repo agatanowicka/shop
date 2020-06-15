@@ -1,6 +1,6 @@
 export default function deleteCard( id) {
     let cardMenuId = id;
-    return (fetch(`http://localhost:8080/colection/product/${cardMenuId}`, { method: 'DELETE' })
+    return (fetch(`http://localhost:8080/collection/product/${cardMenuId}`, { method: 'DELETE' })
         .then(res => {
             if (res.status !== 200) {
                 return alert('Failed to fetch status')

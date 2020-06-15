@@ -8,7 +8,6 @@ export default async function getClothesTypes() {
             return res.json();
         })
         .catch(err => {
-            console.log(err);
             return [];
         }))
 }
