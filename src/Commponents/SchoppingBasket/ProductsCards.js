@@ -33,7 +33,6 @@ function ProductsCards(props) {
                                 <Card.Body className='schoppingBasketCardBody'>
                                     <Card.Title>{product.name}</Card.Title>
                                     <Card.Text>Size: {product.size}</Card.Text>
-                                    <Card.Text>Quantity:{product.quantity}</Card.Text>
                                     <Card.Text>Price: {product.price}</Card.Text>
                                     <Button
                                         variant="dark"

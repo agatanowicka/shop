@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Input from '../../Input';
+import Input from '../Input';
 
 function AllForm(props) {
     return (
@@ -31,7 +31,7 @@ function AllForm(props) {
             onClick={props.checkAllForm} 
             className="cardMenuFormButton" 
             variant="dark" type="submit">
-                Create new card
+                {props.btnTitle}
                 </Button>
             <Form.Label>{props.state.messageFromBackend}</Form.Label>
         </Form>

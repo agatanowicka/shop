@@ -17,10 +17,12 @@ class SchoppingBasketPage extends Component {
     super(props);
     const toPay = this.sumAllPrices(this.props.productsInBasket);
     const productsIdAndSize = this.allIdAndSize(this.props.productsInBasket);
+    const isAuth = localStorage.getItem('isAuth');
     this.state = {
       toPay,
       productsIdAndSize,
-      message: ''
+      message: '',
+      isAuth: isAuth
     }
   }
   deleteAll = (event) => {
@@ -54,7 +56,7 @@ class SchoppingBasketPage extends Component {
     })
     return allPrice;
   }
- 
+
   render() {
     return (
       <div>
@@ -62,7 +64,7 @@ class SchoppingBasketPage extends Component {
           <Container className='shoppingBusketContainer'>
             <Row>
               <Col sm={12} md={6} className='productsAndButtonCol'>
-               <ProductsCards productsInBasket={this.props.productsInBasket} />
+                <ProductsCards productsInBasket={this.props.productsInBasket} />
                 {this.state.productsIdAndSize.length > 0 ? <Button
                   variant="dark"
                   className='deleteAllProductsButton'
@@ -74,8 +76,8 @@ class SchoppingBasketPage extends Component {
                 <div className='toPayDiv'>
                   <h4 className='toPayHeading'>To pay</h4>
                   <h4 className='toPayHeading'>{this.state.toPay}</h4>
-                  {this.props.isAuth ?
-                    <Button className='toPayButton' variant="dark" onClick={(event)=>this.createOrder(event)}>
+                  {this.state.isAuth ?
+                    <Button className='toPayButton' variant="dark" onClick={(event) => this.createOrder(event)}>
                       Submit your order
             </Button>
                     : <Button className='toPayButton' variant="dark" href='http://localhost:3000/Login'>

@@ -1,44 +1,52 @@
 import React, { Component } from 'react';
-import { required } from '../../validation/validators';
+import { required } from '../validation/validators';
 import { Redirect } from 'react-router-dom';
-import createNewCardMenu from './createNewCardMenu';
-import AllForm from '../../CardMenuForm/AllForm';
+import AllForm from '../CardMenuForm/AllForm';
+import editCardMenu from './editCardMenu';
 
-class CardMenuForm extends Component {
+const initFormInputState = {
+    value: '',
+    valid: true,
+    validators: [required],
+    validationMessage: "",
+};
 
+class EditCardMenuForm extends Component {
     constructor(props) {
-        const initFormInputState = {
-            value: '',
-            valid: false,
-            validators: [required],
-            validationMessage: ""
-        };
-        const token = localStorage.getItem('token');
         super(props);
+        let cardMenu;
+        if (this.props.location.state) {
+            cardMenu = this.props.location.state.cardMenu;
+        }
+        const token = localStorage.getItem('token');
         this.state = {
-            cardMenuForm: {
-                image: { ...initFormInputState },
-                title: { ...initFormInputState },
-                type: { ...initFormInputState },
-            },
-            formIsValid: false,
+            formIsValid: true,
             redirect: false,
+            types: [],
             messageFromBackend: '',
             token: token
-
         };
+        if (cardMenu) {
+            this.state = {
+                cardMenuForm: {
+                    image: { ...initFormInputState, value: cardMenu.image },
+                    title: { ...initFormInputState, value: cardMenu.title },
+                    type: { ...initFormInputState, value: cardMenu.type },
+                }
+            }
+            this.state.cardMenuId = cardMenu._id;
+        }
     }
-    createCard = async (event) => {
+    editCard = async (event) => {
         event.preventDefault();
-        const isCreationSuccesfull = await createNewCardMenu(this.state);
-        if (isCreationSuccesfull) {
+        const updatedCard = await editCardMenu(this.state);
+        if (updatedCard) {
             this.setState({
-                messageFromBackend: 'Card menu is created!',
                 redirect: true
             })
         } else {
             this.setState({
-                messageFromBackend: 'The card menu has not been created!',
+                messageFromBackend: "Card can't be update!"
             })
         }
     }
@@ -95,11 +103,11 @@ class CardMenuForm extends Component {
                     state={this.state}
                     checkAllForm={this.checkAllForm}
                     changeHandler={this.changeHandler}
-                    onSubmit={(event) => this.createCard(event)}
-                    btnTitle={' Create new card'}
+                    onSubmit={this.editCard}
+                    btnTitle={' Edit this card'}
                 />
             </div>
         )
     }
 }
-export default CardMenuForm
+export default EditCardMenuForm

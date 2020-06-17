@@ -27,8 +27,9 @@ class PageOneProduct extends Component {
         };
     }
     getDataAboutProduct() {
+        debugger
         const productId = this.props.match.params.id;
-        fetch('http://localhost:8080/colection/product/' + productId, { method: 'GET' })
+        fetch(`http://localhost:8080/collection/product/${ productId}`, { method: 'GET' })
             .then(res => {
                 if (res.status !== 200) {
                     return alert('Failed to fetch status')

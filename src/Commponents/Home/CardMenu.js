@@ -20,7 +20,9 @@ class CardMenu extends Component {
             cards: [],
             redirect: false,
             isAuth,
-            isAministrator
+            isAministrator,
+            editRedirect: false,
+            cardMenu: {}
         }
     }
 
@@ -43,7 +45,13 @@ class CardMenu extends Component {
             alert('Something is wrong!');
         }
     }
-
+    updateCardMenu = (e, item) => {
+        e.preventDefault();
+        this.setState({
+            editRedirect: true,
+            cardMenu: item
+        })
+    }
     redirectPage = (type) => {
         this.setState({
             redirect: type
@@ -53,6 +61,11 @@ class CardMenu extends Component {
         if (this.state.redirect) {
             return <Redirect to={{
                 pathname: "/Catalog/" + this.state.redirect,
+            }} />
+        } else if (this.state.editRedirect) {
+            return <Redirect to={{
+                pathname: "/EditCardMenuForm",
+                state: { cardMenu: this.state.cardMenu }
             }} />
         }
         return (
@@ -79,7 +92,7 @@ class CardMenu extends Component {
                                             </Card.Body>
                                         </Card.Link>
                                         {this.state.isAuth && this.state.isAministrator ?
-                                            <div className='cardMenuButtons'><Button variant="dark" onClick={(e)=>editCardMenu(e, card._id)}>Edit</Button> <Button variant="dark" onClick={(e) => this.deleteCard(e, card._id)}><AiFillDelete /></Button></div>
+                                            <div className='cardMenuButtons'><Button variant="dark" onClick={(e) => this.updateCardMenu(e, card)}>Edit</Button> <Button variant="dark" onClick={(e) => this.deleteCard(e, card._id)}><AiFillDelete /></Button></div>
                                             : ''}
                                     </Card>
                                 </Col>)

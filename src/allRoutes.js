@@ -10,6 +10,7 @@ import AddNewProductForm from './Commponents/AdministratorPages/AddNewProduct/Ad
 import SchoppingBasketPage from './Commponents/SchoppingBasket/SchoppingBasketPage';
 import Logout from './Commponents/Authorization/Logout/Logout';
 import EditProductForm from './Commponents/Catalog/EditProductForm';
+import EditCardMenuForm from'./Commponents/Home/EditCardMenuForm';
 
 
 function allRoutes(props) {
@@ -204,6 +205,15 @@ function allRoutes(props) {
                     path="/EditProductForm"
                     render={props => (
                         <EditProductForm
+                            {...props}
+                            token={props.token}
+                        />
+                    )}
+                />
+                <Route
+                    path="/EditCardMenuForm"
+                    render={props => (
+                        <EditCardMenuForm
                             {...props}
                             token={props.token}
                         />
