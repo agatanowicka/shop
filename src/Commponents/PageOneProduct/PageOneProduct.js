@@ -8,6 +8,8 @@ import ChooseSizeAndAddToBusket from "../PageOneProduct/ChooseSizeAndAddToBusket
 import Details from "../PageOneProduct/Details";
 import Foto from "../PageOneProduct/Foto";
 import Parcel from "../PageOneProduct/Parcel";
+import backendLink from "../../backendLink";
+
 
 class PageOneProduct extends Component {
 
@@ -29,7 +31,7 @@ class PageOneProduct extends Component {
     getDataAboutProduct() {
         debugger
         const productId = this.props.match.params.id;
-        fetch(`http://localhost:8080/collection/product/${ productId}`, { method: 'GET' })
+        fetch(backendLink + `/collection/product/${ productId}`, { method: 'GET' })
             .then(res => {
                 if (res.status !== 200) {
                     return alert('Failed to fetch status')
@@ -81,9 +83,9 @@ class PageOneProduct extends Component {
                         </Col>
                     </Row>
                 </Container>
-                <Container className="detailsContainer">
-                    <Row>
-                        <Col lg>
+                <Container fluid className="detailsContainer">
+                    <Row >
+                        <Col xs={12} s={12} md={6} lg={6}>
                             <Details
                                 details={this.state.details}
                                 fabric={this.state.fabric}
@@ -91,7 +93,7 @@ class PageOneProduct extends Component {
                                 careTips={this.state.careTips}
                             />
                         </Col>
-                        <Col lg>
+                        <Col  xs={12} s={12} md={6} lg={6}  >
                             <Foto />
                         </Col>
                     </Row>

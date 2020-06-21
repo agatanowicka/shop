@@ -1,6 +1,6 @@
-
+import backendLink from "../../../backendLink";
 function createNewProduct( props) {
-    return fetch('http://localhost:8080/collection/product', {
+    return fetch(backendLink + '/collection/product', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

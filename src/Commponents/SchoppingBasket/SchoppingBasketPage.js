@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteAllProductFromBusket, getProductsInBasket } from '../../actions/productsInBasketActions';
+import { deleteAllProductFromBusket} from '../../actions/productsInBasketActions';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -80,7 +80,7 @@ class SchoppingBasketPage extends Component {
                     <Button className='toPayButton' variant="dark" onClick={(event) => this.createOrder(event)}>
                       Submit your order
             </Button>
-                    : <Button className='toPayButton' variant="dark" href='http://localhost:3000/Login'>
+                    : <Button className='toPayButton' variant="dark" href='/Login'>
                       Login
                 </Button>}
                   <h6 className='messageAboutSentOrder'>{this.state.message}</h6>

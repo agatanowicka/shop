@@ -1,7 +1,9 @@
+import backendLink from "../../backendLink";
+
 export default function editCardMenu(props) {
     let cardMenuId = props.cardMenuId;
     const token = localStorage.getItem('token');
-    return (fetch(`http://localhost:8080/cardMenu/product/${cardMenuId}`, {
+    return (fetch(backendLink + `/cardMenu/product/${cardMenuId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -102,6 +102,7 @@ class LoginForm extends Component {
                         <Form.Label className="validMessage">{this.state.loginForm.password.validationMessage}</Form.Label>
                     </Form.Group>
                     <Button onClick={this.checkAllForm} className="loginButton" variant="dark" type="submit"  >Log In</Button>
+                    <Form.Label className="validMessage">{this.props.errMessage}</Form.Label>
                 </Form>
                 </Authorization>
         )

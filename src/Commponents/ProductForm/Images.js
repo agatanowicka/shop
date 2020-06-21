@@ -22,7 +22,7 @@ function Images(props) {
             props.imagesChangeCallback(images);
         }
     }
-    function deleteImage( e,item) {
+    function deleteImage(e, item) {
         e.preventDefault();
         const filteredImages = images.filter((img) => img !== item)
         setImages(filteredImages);
@@ -34,7 +34,7 @@ function Images(props) {
                 <Row>
                     {images.map((item, index) => {
                         return (<Col md={1} key={index}>
-                            <Button variant="dark" className='deleteImageBtn' onClick={(e) => deleteImage(e,item)}><AiFillDelete /></Button>
+                            <Button variant="dark" className='deleteImageBtn' onClick={(e) => deleteImage(e, item)}><AiFillDelete /></Button>
                             <Image src={item} rounded style={{ width: '50px', height: '60px' }} />
                         </Col>)
                     })}
@@ -52,10 +52,10 @@ function Images(props) {
                             style={{ width: '100%' }}
                         />
                     </Col>
-                    <Col sm={4} style={{ paddingRight: '0px' }} >
+                    <Col sm={4} style={{ padding: '0px' }} >
                         <Button onClick={() => addImage()}
-                            style={{ width: '100%', backgroundColor: '#E7B2A5', borderColor: 'rgb(240, 130, 198)', borderWidth: '2px' }}
-                            variant="primary" >
+                            className='addImgProductBtn'
+                            variant="dark" >
                             Add image
                             </Button>
                     </Col>

@@ -25,28 +25,34 @@ class Details extends Component {
     }
     render() {
         return (
-            <div className='divWithSizeAndDetails'>
+            <div className='divWithSizeAndDetails '>
                 <Tabs defaultActiveKey="details" transition={false} id="noanim-tab-example" variant='tabs' className='tabsWithSizeAndDetails'>
                     <Tab eventKey="details" title="Details">
-                        <div className='tabsContent'>
-                            <div className='detailsItem'><h5 className='detailsItemHeading'>Details:</h5> <h6 className='detailsItemText'> {this.props.details}</h6></div>
-                            <div className='detailsItem'>  <h5 className='detailsItemHeading'>Fabric:</h5> <h6 className='detailsItemText'>{this.props.fabric}</h6> </div>
-                            <div className='detailsItem'> <h5 className='detailsItemHeading'>Type of material:</h5> <h6 className='detailsItemText'>{this.props.typeOfMaterial}</h6> </div>
-                            <div className='detailsItem'> <h5 className='detailsItemHeading'>Care tips:</h5> <h6 className='detailsItemText'> {this.props.careTips}</h6> </div>
-                        </div>
+                        <Container fluid className='tabsContent'>
+                            <Row>
+                                <Col >
+                                    <div className='detailsItem'><h5 className='detailsItemHeading'>Details:</h5> <h6 className='detailsItemText'> {this.props.details}</h6></div>
+                                    <div className='detailsItem'>  <h5 className='detailsItemHeading'>Fabric:</h5> <h6 className='detailsItemText'>{this.props.fabric}</h6> </div>
+                                    <div className='detailsItem'> <h5 className='detailsItemHeading'>Type of material:</h5> <h6 className='detailsItemText'>{this.props.typeOfMaterial}</h6> </div>
+                                    <div className='detailsItem'> <h5 className='detailsItemHeading'>Care tips:</h5> <h6 className='detailsItemText'> {this.props.careTips}</h6> </div>
+                                </Col>
+                            </Row>
+                        </Container>
                     </Tab>
                     <Tab eventKey="size" title="Size" >
-                        <div className='tabsContent'>
-                            <SizeTable  bodyData={table1BodyData} />
-                            <Container fluid style={{ padding: '0px' }}>
-                                <Row>
-                                    <Col xs={3} sm={3}><img src='/images/size.jpg' width='100%' height='90%' alt='Size'></img></Col>
-                                    <Col xs={9} sm={9}> 
+                        <Container fluid className='tabsContent'>
+                            <Row>
+                                <Col>
+                                    <SizeTable bodyData={table1BodyData} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={3} sm={3}><img src='/images/size.jpg' width='100%' height='90%' alt='Size'></img></Col>
+                                <Col xs={9} sm={9}>
                                     <SizeTable bodyData={table2BodyData} />
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </div>
+                                </Col>
+                            </Row>
+                        </Container>
                     </Tab>
                 </Tabs>
             </div>

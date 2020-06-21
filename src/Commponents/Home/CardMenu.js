@@ -8,7 +8,6 @@ import getClothesTypes from '../getClothesTypes';
 import Button from 'react-bootstrap/Button';
 import { AiFillDelete } from "react-icons/ai";
 import deleteCardMenu from './deleteCardMenu';
-import editCardMenu from './editCardMenu';
 
 class CardMenu extends Component {
     constructor(props) {
@@ -37,7 +36,7 @@ class CardMenu extends Component {
         const isSuccessfull = await deleteCardMenu(cardId);
         if (isSuccessfull) {
             this.setState({
-                cards: this.state.cards.filter((card) => card._id != cardId)
+                cards: this.state.cards.filter((card) => card._id !== cardId)
             })
 
         }

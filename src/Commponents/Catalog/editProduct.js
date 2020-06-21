@@ -1,6 +1,9 @@
+
+import backendLink from "../../backendLink";
+
 export default function editCard(props) {
     let productId = props.productId;
-    return (fetch(`http://localhost:8080/collection/edit/${productId}`,  {
+    return (fetch(backendLink + `/collection/edit/${productId}`,  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

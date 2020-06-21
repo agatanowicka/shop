@@ -1,6 +1,6 @@
-
+import backendLink from "../../../backendLink";
 function createNewCardMenu(props) {
-    return fetch('http://localhost:8080/cardMenu/', {
+    return fetch(backendLink+'/cardMenu/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

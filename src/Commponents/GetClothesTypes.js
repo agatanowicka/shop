@@ -1,6 +1,7 @@
+import backendLink from "../backendLink";
 
 export default async function getClothesTypes() {
-    return (fetch('http://localhost:8080/cardMenu/', { method: 'GET' })
+    return (fetch(backendLink+'/cardMenu/', { method: 'GET' })
         .then(res => {
             if (res.status !== 200) {
                 return alert('Failed to fetch status')

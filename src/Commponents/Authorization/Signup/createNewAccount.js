@@ -1,6 +1,7 @@
+import backendLink from "../../../backendLink";
 function createNewAccount(props) {
     const formData = props.signupForm;
-    return fetch('http://localhost:8080/user/signup', {
+    return fetch(backendLink + '/user/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

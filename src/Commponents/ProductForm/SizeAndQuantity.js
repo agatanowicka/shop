@@ -9,7 +9,6 @@ import SelectInput from './SelectInput';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import { AiFillDelete } from "react-icons/ai";
-import deleteCard from '../Catalog/deleteCard';
 
 function SizeAndQuantity(props) {
     const [sizeAndQuantityErrMessage, setSizeAndQuantityErrMessage] = useState('');
@@ -59,7 +58,7 @@ function SizeAndQuantity(props) {
                             value={size}
                         />
                     </Col>
-                    <Col sm={4} style={{ paddingRight: '0px' }} >
+                    <Col sm={4} className='quantityInput' >
                         <Input
                             min={"0"}
                             type={"number"}
@@ -68,11 +67,11 @@ function SizeAndQuantity(props) {
                             value={quantity}
                         />
                     </Col>
-                    <Col sm={4} style={{ marginTop: '30px', paddingRight: '0px' }} >
+                    <Col sm={4} style={{ marginTop: '30px', padding: '0px' }} >
                         <Button
                             onClick={() => addSizeAndQuantity()}
-                            style={{ width: '100%', backgroundColor: '#E7B2A5', borderColor: 'rgb(240, 130, 198)', borderWidth: '2px' }}
-                            variant="primary"
+                            className='addSizeAndQuantityBtn'
+                            variant="dark"
                         >
                             Add size and quantity
                         </Button>

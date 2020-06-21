@@ -1,13 +1,15 @@
-function createNewOrder(props) {
+import backendLink from "../../backendLink";
+
+function createNewOrder(productsIdAndSize) {
     const token = localStorage.getItem('token');
-    return fetch('http://localhost:8080/order/', {
+    return fetch(backendLink + '/order/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + token
         },
         body: JSON.stringify({
-            products: props.productsIdAndSize
+            products: productsIdAndSize
         })
     })
         .then(res => {

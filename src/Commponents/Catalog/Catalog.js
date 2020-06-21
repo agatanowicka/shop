@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Card from "./Card";
 import deleteCard from './deleteCard';
 import { Redirect } from 'react-router-dom';
+import backendLink from "../../backendLink";
 
 class Catalog extends Component {
     constructor(props) {
@@ -43,7 +44,7 @@ class Catalog extends Component {
         if (type) {
             path = `type=${type}`;
         }
-        fetch(`http://localhost:8080/collection/product?${path}`, { method: 'GET' })
+        fetch(backendLink + `/collection/product?${path}`, { method: 'GET' })
             .then(res => {
                 if (res.status !== 200) {
                     return alert('Failed to fetch status')

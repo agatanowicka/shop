@@ -26,16 +26,25 @@ class ChooseSizeAndAddToBusket extends Component {
             chooseSize: 'Choose size',
             message: ''
         }
+
         this.timer = null;
         this.handler = (event) => {
             event.preventDefault();
-            addToBusket(this.props.dispatch, this.props, this.state.size);
-            this.setState({
-                message: 'Your order has been added to the shopping cart.'
-            })
-            this.timer = setTimeout(() => this.resetMessage()
-                , 2000)
-        };
+            if (this.state.size !== '') {
+                addToBusket(this.props.dispatch, this.props, this.state.size);
+                this.setState({
+                    message: 'Your order has been added to the shopping cart.'
+                })
+                this.timer = setTimeout(() => this.resetMessage()
+                    , 2000)
+            } else {
+                this.setState({
+                    message: 'You must select a size.'
+                })
+                this.timer = setTimeout(() => this.resetMessage()
+                    , 2000)
+            }
+        }
     }
 
     resetMessage = () => {

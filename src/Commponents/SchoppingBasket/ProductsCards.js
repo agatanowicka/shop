@@ -26,10 +26,10 @@ function ProductsCards(props) {
                 <Card key={index} className='cardsInBusket'>
                     <Container>
                         <Row>
-                            <Col >
-                                <Card.Img variant="top" src={product.images} />
+                            <Col xs={6} s={6} md={6} lg={6} style={{padding:'0px'}}>
+                                <Card.Img variant="top" src={product.images} style={{height:'100%', width:'100%'}}/>
                             </Col>
-                            <Col >
+                            <Col  xs={6} s={6} md={6} lg={6} >
                                 <Card.Body className='schoppingBasketCardBody'>
                                     <Card.Title>{product.name}</Card.Title>
                                     <Card.Text>Size: {product.size}</Card.Text>

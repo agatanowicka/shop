@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import LoginForm from "./LoginForm";
 import CreateAnAccountButton from "./CreateAnAccountButton";
+import backendLink from "../../../backendLink";
 
 class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             redirect: false,
+            errMessage:'',
             
         }
     }
     loginHandler = (event, authData) => {
         event.preventDefault();
-        fetch('http://localhost:8080/user/login', {
+        fetch(backendLink + '/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -24,10 +26,14 @@ class LoginPage extends Component {
         })
             .then(res => {
                 if (res.status === 422) {
-                    console.log("Validation failed. Make sure the email address isn't used yet!");
+                    this.setState({
+                        errMessage:"Validation failed. Make sure the email address isn't used yet!"
+                    })
                 }
                 if (res.status !== 200 && res.status !== 201) {
-                    console.log('Could not authenticate you!');
+                    this.setState({
+                        errMessage:'Could not authenticate you!'
+                    })
                 }
                 return res.json();
             })
@@ -74,7 +80,8 @@ class LoginPage extends Component {
         return (
             <div className="loginPage">
                 <LoginForm onLogin={this.loginHandler}
-                    redirect={this.state.redirect} />
+                    redirect={this.state.redirect} 
+                    errMessage={this.state.errMessage}/>
                 <CreateAnAccountButton />
             </div>
         )
